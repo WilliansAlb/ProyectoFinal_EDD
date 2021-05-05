@@ -25,37 +25,36 @@ public class Tests {
     }
 
     public void probar_circular() {
-        Circular lista = new Circular();
-        int contador = 0;
-        while (contador < 11) {
-            System.out.println("Ingresa los datos del usuario (id-nombre-contraseña-tipo)");
-            Scanner s = new Scanner(System.in);
-            String ingreso = s.next();
-            String[] datos = ingreso.split("-");
-            int id = Integer.parseInt(datos[0]);
-            Usuario nuevo = new Usuario(id, datos[1], datos[2], datos[3].equalsIgnoreCase("colaborador"));
-            lista.agregar_nodo(nuevo, id);
-            System.out.println(contador);
-            lista.imprimir();
-            contador++;
-        }
+        Circular circular = new Circular();
+        circular.insertar2(201930221, new Estudiante(201930221, "Willians", "San Lorenzo"));
+        circular.insertar2(201830258, new Estudiante(201830258, "Conflicto", "San Lorenzo"));
+        circular.insertar2(201030322, new Estudiante(201030322, "Alberto", "San Lorenzo"));
+        circular.insertar2(201830521, new Estudiante(201830521, "Orozco", "San Lorenzo"));
+        circular.insertar2(21, new Estudiante(21, "Orozco", "San Lorenzo"));
+        circular.insertar2(202330521, new Estudiante(202330521, "Orozco", "San Lorenzo"));
+        //circular.imprimir();
+        //circular.imprimir();
+        circular.eliminar(201930221);
+        System.out.println("\n\n\n---------------------------------------------------------\n\n");
+        circular.imprimir();
     }
-
-    public void probar_AVL() {
-        AVL lista = new AVL();
-        int contador = 0;
-        while (contador < 5) {
-            System.out.println("Ingresa los datos del usuario (numero-nombre-direccion)");
-            Scanner s = new Scanner(System.in);
-            String ingreso = s.next();
-            String[] datos = ingreso.split("-");
-            int id = Integer.parseInt(datos[0]);
-            Catedratico nuevo = new Catedratico(id, datos[1], datos[2]);
-            lista.insertar(nuevo, id);
-            System.out.println(contador);
-            contador++;
-        }
-        lista.crear_doc();
+    
+    public void probar_AVL(){
+        AVL arbol = new AVL();
+        arbol.insertar(201830221, new Estudiante(201830221, "Willians", "San Lorenzo"));
+        arbol.insertar(201830258, new Estudiante(201830258, "Conflicto", "San Lorenzo"));
+        arbol.insertar(201830322, new Estudiante(201830322, "Alberto", "San Lorenzo"));
+        arbol.insertar(201830521, new Estudiante(201830521, "Orozco", "San Lorenzo"));
+        arbol.insertar(201830921, new Estudiante(201830921, "Lopez", "San Lorenzo"));
+        arbol.insertar(201830222, new Estudiante(201830222, "Marco", "San Lorenzo"));
+        arbol.insertar(201831221, new Estudiante(201831221, "Polo", "San Lorenzo"));
+        arbol.insertar(201930221, new Estudiante(201930221, "Fernandez", "San Lorenzo"));
+        arbol.insertar(200830221, new Estudiante(200830221, "Lesly", "San Lorenzo"));
+        arbol.insertar(211830221, new Estudiante(211830221, "Aguilar", "San Lorenzo"));
+        arbol.crear_doc();
+        arbol.eliminar(201830258);
+        System.out.println("\n\n\n---------------------------------------------------------\n\n");
+        arbol.crear_doc();
     }
 
     public void probar_hash() {

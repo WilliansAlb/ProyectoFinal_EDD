@@ -17,84 +17,223 @@ public class Circular<T> {
     public Circular() {
         raiz = null;
     }
-    
-    public void agregar_nodo(T data, int id) {
+
+    /**
+     * Método que insertar el elemento a la lista circular
+     *
+     * @param id los datos del elemento
+     * @param data el identificador del elemento
+     */
+    public void insertar(long id, T data) {
         if (raiz == null) {
-            raiz = new NodoCircular(id,data,null,null);
+            raiz = new NodoCircular(id, data, null, null);
             raiz.setSiguiente(raiz);
             raiz.setAnterior(raiz);
         } else {
+            imprimir();
+            System.out.println("ingreso\n\n");
             NodoCircular<T> temp = raiz;
             do {
                 if (temp.getSiguiente() == raiz) {
                     if (temp.getId() > id) {
-                        NodoCircular<T> nuevo = new NodoCircular(id,data,temp,temp.getAnterior());
+                        System.out.println(id + " fase 1");
+                        NodoCircular<T> nuevo = new NodoCircular(id, data, temp, temp.getAnterior());
                         temp.getAnterior().setSiguiente(nuevo);
                         raiz = nuevo;
                         break;
                     } else {
-                        NodoCircular<T> nuevo = new NodoCircular(id,data,raiz,temp);
+                        System.out.println(id + " fase 2");
+                        NodoCircular<T> nuevo = new NodoCircular(id, data, raiz, temp);
                         temp.setSiguiente(nuevo);
                         temp.setAnterior(nuevo);
                         break;
                     }
                 } else {
                     if (temp == raiz && temp.getId() > id) {
-                        NodoCircular<T> nuevo = new NodoCircular(id,data,temp.getAnterior(),temp);
+                        System.out.println(id + " fase 3");
+                        NodoCircular<T> nuevo = new NodoCircular(id, data, temp, temp.getAnterior());
                         nuevo.getAnterior().setSiguiente(nuevo);
                         temp.setAnterior(nuevo);
                         raiz = nuevo;
+                        imprimir();
                         break;
                     } else {
                         if (temp.getId() < id && temp.getSiguiente().getId() > id) {
-                            NodoCircular<T> nuevo = new NodoCircular(id,data,temp.getSiguiente(),temp);
+                            System.out.println(id + " fase 4");
+                            NodoCircular<T> nuevo = new NodoCircular(id, data, temp.getSiguiente(), temp);
                             temp.setSiguiente(nuevo);
                             temp.setAnterior(nuevo);
                             break;
                         }
+                        System.out.println(id + " fase f");
                     }
                 }
                 temp = temp.getSiguiente();
             } while (temp != raiz);
         }
     }
-    
+
+    public void insertar2(long id, T data) {
+        NodoCircular<T> nuevo = new NodoCircular(id, data, null, null);
+        System.out.println("ingreso " + id);
+        if (raiz == null) {
+            raiz = nuevo;
+            raiz.setSiguiente(raiz);
+            raiz.setAnterior(raiz);
+        } else {
+            NodoCircular<T> temp = raiz;
+            boolean mayor = false;
+            do {
+                if (temp.getId() > id) {
+                    System.out.println(temp.getId() + " > " + id);
+                    mayor = true;
+                    break;
+                }
+                if (temp.getSiguiente() == raiz) {
+                    break;
+                } else {
+                    temp = temp.getSiguiente();
+                }
+            } while (temp != raiz);
+            NodoCircular<T> aux = temp;
+            if (temp == raiz) {
+                if (temp.getSiguiente() == raiz) {
+                    if (mayor) {
+                        nuevo.setSiguiente(temp);
+                        nuevo.setAnterior(temp);
+                        temp.setSiguiente(nuevo);
+                        temp.setAnterior(nuevo);
+                        raiz = nuevo;
+                    } else {
+                        temp.setSiguiente(nuevo);
+                        temp.setAnterior(nuevo);
+                        nuevo.setSiguiente(raiz);
+                        nuevo.setAnterior(raiz);
+                    }
+                } else {
+                    if (mayor) {
+                        nuevo.setSiguiente(temp);
+                        nuevo.setAnterior(temp.getAnterior());
+                        temp.getAnterior().setSiguiente(nuevo);
+                        temp.setAnterior(nuevo);
+                        raiz = nuevo;
+                    } else {
+                        nuevo.setSiguiente(temp.getSiguiente());
+                        nuevo.setAnterior(temp);
+                        temp.getSiguiente().setAnterior(nuevo);
+                        temp.setSiguiente(nuevo);
+                    }
+                }
+            } else {
+                if (temp.getSiguiente() == raiz) {
+                    if (mayor) {
+                        nuevo.setSiguiente(temp);
+                        nuevo.setAnterior(temp.getAnterior());
+                        temp.getAnterior().setSiguiente(nuevo);
+                        temp.setAnterior(nuevo);
+                    } else {
+                        nuevo.setSiguiente(raiz);
+                        nuevo.setAnterior(temp);
+                        temp.setSiguiente(nuevo);
+                        raiz.setAnterior(nuevo);
+                    }
+                } else {
+                    if (mayor) {
+                        nuevo.setAnterior(temp.getAnterior());
+                        nuevo.setSiguiente(temp);
+                        temp.getAnterior().setSiguiente(nuevo);
+                        temp.setAnterior(nuevo);
+                    } else {
+                        nuevo.setAnterior(temp);
+                        nuevo.setSiguiente(temp.getSiguiente());
+                        temp.getSiguiente().setAnterior(nuevo);
+                        temp.setSiguiente(nuevo);
+                    }
+                }
+            }
+            imprimir();
+        }
+    }
+
+    public void eliminar(long id) {
+        NodoCircular<T> reco = raiz;
+        if (raiz == null) {
+            System.out.println("No hay datos");
+        } else {
+            boolean encontrado = false;
+            do {
+                if (reco.getId() == id) {
+                    encontrado = true;
+                    break;
+                } else {
+                    reco = reco.getSiguiente();
+                }
+            } while (reco != raiz);
+            if (encontrado) {
+                NodoCircular<T> aux = reco.getAnterior();
+                NodoCircular<T> temp = reco.getSiguiente();
+                if (reco != raiz) {
+                    if (reco.getSiguiente() == raiz) {
+                        System.out.println("entra if1" + reco.getId());
+                        aux.setSiguiente(raiz);
+                        raiz.setAnterior(aux);
+                    } else {
+                        System.out.println("entra if2" + reco.getId());
+                        reco.getAnterior().setSiguiente(reco.getSiguiente());
+                        reco.getSiguiente().setAnterior(reco.getAnterior());
+                    }
+                } else {
+                    if (reco.getSiguiente() == raiz) {
+                        raiz = null;
+                    } else {
+                        System.out.println("entra acá");
+                        aux.setSiguiente(reco.getSiguiente());
+                        reco.getSiguiente().setAnterior(aux);
+                        raiz = reco.getSiguiente();
+                    }
+                }
+            } else {
+                System.out.println("No hay datos donde buscar");
+            }
+        }
+    }
+
     public void imprimir() {
         NodoCircular<T> reco = raiz;
         do {
-            System.out.println(reco.getData().toString());
+            System.out.println("anterior: " + reco.getAnterior().getId() + " actual: " + reco.getId() + " siguiente: " + reco.getSiguiente().getId());
             System.out.println("-----------------------");
             reco = reco.getSiguiente();
-        } while (reco != raiz && reco!=null);
+        } while (reco != raiz);
     }
 
-    
-    private class NodoCircular<T>{
+    private class NodoCircular<T> {
+
         private NodoCircular<T> siguiente;
         private NodoCircular<T> anterior;
         private T data;
-        private int id;
-        
-        private NodoCircular(int id, T data, NodoCircular<T> siguiente, NodoCircular<T> anterior){
+        private long id;
+
+        private NodoCircular(long id, T data, NodoCircular<T> siguiente, NodoCircular<T> anterior) {
             this.data = data;
             this.siguiente = siguiente;
             this.anterior = anterior;
             this.id = id;
         }
 
-        public int getId() {
+        public long getId() {
             return id;
         }
 
-        public void setId(int id) {
+        public void setId(long id) {
             this.id = id;
         }
-        
-        private NodoCircular<T> getSiguiente(){
+
+        private NodoCircular<T> getSiguiente() {
             return this.siguiente;
         }
-        
-        private NodoCircular<T> getAnterior(){
+
+        private NodoCircular<T> getAnterior() {
             return this.anterior;
         }
 

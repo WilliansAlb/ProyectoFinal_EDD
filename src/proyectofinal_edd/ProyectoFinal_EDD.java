@@ -18,7 +18,7 @@ public class ProyectoFinal_EDD {
      */
     public static void main(String[] args) {
         Tests t = new Tests();
-        t.probar_lista();
+        t.probar_circular();
     }
     
 }
