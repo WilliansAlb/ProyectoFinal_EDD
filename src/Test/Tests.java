@@ -42,7 +42,7 @@ public class Tests {
     }
     
     public void probando_B(){
-        B arbol = new B(5);
+        B arbol = new B(3);
         arbol.insertar(10);
         arbol.insertar(15);
         arbol.insertar(1);
@@ -55,10 +55,31 @@ public class Tests {
         arbol.insertar(18);
         arbol.insertar(19);
         arbol.insertar(13);
+        arbol.insertar(27);
+        arbol.insertar(25);
+        arbol.insertar(48);
+        arbol.insertar(50);
+        arbol.insertar(55);
+        arbol.insertar(70);
+        arbol.insertar(85);
+        arbol.insertar(90);
+        arbol.insertar(92);
+        arbol.insertar(95);
+        arbol.insertar(100);
+        arbol.insertar(101);
+        arbol.insertar(102);
+        arbol.insertar(103);
+        arbol.insertar(104);
+        arbol.insertar(105);
+        arbol.insertar(106);
+        arbol.insertar(107);
+        arbol.buscar_nodo_por_clave(100);
+        arbol.mostrar_arbol();
+        arbol.eliminar(101);
         for (int i = 0; i < 10; i++) {
             System.out.println("  ");
         }
-        arbol.buscar(arbol.getRaiz(), 10);
+        arbol.mostrar_arbol();
     }
     
     public void probar_AVL(){
