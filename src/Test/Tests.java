@@ -6,6 +6,7 @@
 package Test;
 
 import Estructuras.AVL;
+import Estructuras.B;
 import Estructuras.Circular;
 import Estructuras.Hash;
 import Estructuras.SimpleEnlazada;
@@ -37,6 +38,27 @@ public class Tests {
         circular.eliminar(201930221);
         System.out.println("\n\n\n---------------------------------------------------------\n\n");
         circular.imprimir();
+        System.out.println(circular.documento());
+    }
+    
+    public void probando_B(){
+        B arbol = new B(5);
+        arbol.insertar(10);
+        arbol.insertar(15);
+        arbol.insertar(1);
+        arbol.insertar(2);
+        arbol.insertar(5);
+        arbol.insertar(4);
+        arbol.insertar(9);
+        arbol.insertar(20);
+        arbol.insertar(3);
+        arbol.insertar(18);
+        arbol.insertar(19);
+        arbol.insertar(13);
+        for (int i = 0; i < 10; i++) {
+            System.out.println("  ");
+        }
+        arbol.buscar(arbol.getRaiz(), 10);
     }
     
     public void probar_AVL(){

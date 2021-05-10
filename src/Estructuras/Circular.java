@@ -11,7 +11,8 @@ package Estructuras;
  * @param <T>
  */
 public class Circular<T> {
-
+    static final String INICIO_GRAFICO = "digraph G{\n"
+            + "node [shape = record,height=.1];";
     private NodoCircular<T> raiz;
 
     public Circular() {
@@ -75,7 +76,6 @@ public class Circular<T> {
 
     public void insertar2(long id, T data) {
         NodoCircular<T> nuevo = new NodoCircular(id, data, null, null);
-        System.out.println("ingreso " + id);
         if (raiz == null) {
             raiz = nuevo;
             raiz.setSiguiente(raiz);
@@ -95,7 +95,6 @@ public class Circular<T> {
                     temp = temp.getSiguiente();
                 }
             } while (temp != raiz);
-            NodoCircular<T> aux = temp;
             if (temp == raiz) {
                 if (temp.getSiguiente() == raiz) {
                     if (mayor) {
@@ -125,30 +124,16 @@ public class Circular<T> {
                     }
                 }
             } else {
-                if (temp.getSiguiente() == raiz) {
-                    if (mayor) {
-                        nuevo.setSiguiente(temp);
-                        nuevo.setAnterior(temp.getAnterior());
-                        temp.getAnterior().setSiguiente(nuevo);
-                        temp.setAnterior(nuevo);
-                    } else {
-                        nuevo.setSiguiente(raiz);
-                        nuevo.setAnterior(temp);
-                        temp.setSiguiente(nuevo);
-                        raiz.setAnterior(nuevo);
-                    }
+                if (mayor) {
+                    nuevo.setAnterior(temp.getAnterior());
+                    nuevo.setSiguiente(temp);
+                    temp.getAnterior().setSiguiente(nuevo);
+                    temp.setAnterior(nuevo);
                 } else {
-                    if (mayor) {
-                        nuevo.setAnterior(temp.getAnterior());
-                        nuevo.setSiguiente(temp);
-                        temp.getAnterior().setSiguiente(nuevo);
-                        temp.setAnterior(nuevo);
-                    } else {
-                        nuevo.setAnterior(temp);
-                        nuevo.setSiguiente(temp.getSiguiente());
-                        temp.getSiguiente().setAnterior(nuevo);
-                        temp.setSiguiente(nuevo);
-                    }
+                    nuevo.setAnterior(temp);
+                    nuevo.setSiguiente(temp.getSiguiente());
+                    temp.getSiguiente().setAnterior(nuevo);
+                    temp.setSiguiente(nuevo);
                 }
             }
             imprimir();
@@ -205,6 +190,22 @@ public class Circular<T> {
             System.out.println("-----------------------");
             reco = reco.getSiguiente();
         } while (reco != raiz);
+    }
+    
+    public String documento(){
+        return INICIO_GRAFICO+estructura_graphviz()+"}";
+    }
+    
+    public String estructura_graphviz(){
+        NodoCircular<T> reco = raiz;
+        String retorno = "";
+        do {
+            retorno += "nodeCIR" + reco.getId() + "[label = \" " + reco.getData().toString() + " \"];\n";
+            retorno += "\"nodeCIR" + reco.getId() + "\" -> \"nodeCIR" + reco.getSiguiente().getId() + "\"\n";
+            retorno += "\"nodeCIR" + reco.getId() + "\" -> \"nodeCIR" + reco.getAnterior().getId() + "\"\n";
+            reco = reco.getSiguiente();
+        } while (reco != raiz);
+        return retorno;
     }
 
     private class NodoCircular<T> {
