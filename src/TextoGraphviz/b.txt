@@ -1,0 +1,13 @@
+digraph G{
+nodesep=1;
+rankdir=TB;
+node[shape=record,width = 1, height = 1];
+
+node3[label ="<f0>| 3\n8:00am-8:50am\nlunes\n111\nT1\n3\nProf120 |<f1>"];
+
+node1[label ="<f0>| 1\n8:50am-9:40am\nlunes\n12\nT3\n28\nProf10 | <f1>| 2\n9:40am-10:30am\nlunes\n32\nT4\n18\nProf1 |<f2>"];
+node3:f0->node1;
+
+node21[label ="<f0>| 21\n10:30am-11:20am\nlunes\n34\nT5\n8\nProf23 | <f1>| 23\n12:10am-1:00pm\nlunes\n236\nT7\n32\nProf130 | <f2>| 31\n7:10am-8:00am\nlunes\n777\nT2\n31\nProf100 | <f3>| 100\n11:20am-12:10am\nlunes\n73\nT6\n9\nProf3 |<f4>"];
+node3:f1->node21;
+}

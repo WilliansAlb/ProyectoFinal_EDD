@@ -1,0 +1,35 @@
+digraph G{
+	nodesep=0.3;
+	rankdir=LR;
+	node [shape=record, width = .1, height = .1];
+	node[width = 1.5];
+node0B[label ="<f0> 0 | <f1> 1 | <f2> 2 | <f3> 3 | <f4> 4 | <f5> 5 | <f6> 6 | <f7> 7 | <f8> 8 | <f9> 9 | <f10> 10 | <f11> 11 | <f12> 12 | <f13> 13 | <f14> 14 | <f15> 15 | <f16> 16 | <f17> 17 | <f18> 18 | <f19> 19 | <f20> 20 | <f21> 21 | <f22> 22 | <f23> 23 | <f24> 24 | <f25> 25 | <f26> 26 | <f27> 27 | <f28> 28 | <f29> 29 | <f30> 30 | <f31> 31 | <f32> 32 | <f33> 33 | <f34> 34 | <f35> 35 | <f36> 36 ", height=2.5];
+node0[label = " carné: 464198670\n nombre: Juan Perez\n direccion: GUATEMALA "];
+node0B:f0 -> node0:n;
+node9[label = " carné: 201830421\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f9 -> node9:n;
+node12[label = " carné: 201811221\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f12 -> node12:n;
+node16[label = " carné: 201630221\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f16 -> node16:n;
+node20[label = " carné: 201830321\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f20 -> node20:n;
+node21[label = " carné: 201820221\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f21 -> node21:n;
+node23[label = " carné: 201230221\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f23 -> node23:n;
+node28[label = " carné: 201830921\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f28 -> node28:n;
+node31[label = " carné: 201830221\n nombre: Willians Alberto\n direccion: pravus "];
+node0B:f31 -> node31:n;
+node32[label = " carné: 201830222\n nombre: Willians Orozco\n direccion: pravus "];
+node0B:f32 -> node32:n;
+node33[label = " carné: 201830223\n nombre: Willians Lopez\n direccion: pravus "];
+node0B:f33 -> node33:n;
+node34[label = " carné: 201830224\n nombre: Alberto\n direccion: pravus "];
+node0B:f34 -> node34:n;
+node35[label = " carné: 201830225\n nombre: Willians Alberto Orozco\n direccion: pravus "];
+node0B:f35 -> node35:n;
+node36[label = " carné: 201830226\n nombre: Alberto Lopez\n direccion: pravus "];
+node0B:f36 -> node36:n;
+}

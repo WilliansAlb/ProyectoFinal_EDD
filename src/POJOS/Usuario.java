@@ -10,16 +10,24 @@ package POJOS;
  * @author willi
  */
 public class Usuario {
+    public final int COLABORADOR = 0;
+    public final int ESTUDIANTE = 1;
+    public final int SUPER = 2;
+    private int tipo;
     private int id;
     private String name;
     private String password;
-    private boolean colaborador;
 
-    public Usuario(int id, String name, String password, boolean colaborador) {
+    public Usuario() {
+    }
+
+    
+    
+    public Usuario(int id, String name, String password, int tipo) {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.colaborador = colaborador;
+        this.tipo = tipo;
     }
 
     public int getId() {
@@ -46,15 +54,43 @@ public class Usuario {
         this.password = password;
     }
 
-    public boolean isColaborador() {
-        return colaborador;
+    public int getTipo() {
+        return tipo;
     }
 
-    public void setIsColaborador(boolean colaborador) {
-        this.colaborador = colaborador;
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
     }
+    
+    public String getTipo(int buscado){
+        switch(buscado){
+            case COLABORADOR:
+                return "colaborador";
+            case ESTUDIANTE:
+                return "estudiante";
+            case SUPER:
+                return "super";
+            default:
+                return "super";
+        }
+    }
+    
+     public int getTipo(String buscado){
+        switch(buscado){
+            case "colaborador":
+                return COLABORADOR;
+            case "estudiante":
+                return ESTUDIANTE;
+            case "super":
+                return SUPER;
+            default:
+                return SUPER;
+        }
+    }
+
+    
     @Override
     public String toString(){
-        return id+"\\n"+name+"\\n"+password+"\\n"+colaborador;
+        return id+"\\n"+name+"\\n"+password+"\\n"+getTipo(tipo);
     }
 }

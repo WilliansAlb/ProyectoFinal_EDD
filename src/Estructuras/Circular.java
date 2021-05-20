@@ -182,6 +182,17 @@ public class Circular<T> {
             }
         }
     }
+    
+    public T obtener(long id) {
+        NodoCircular<T> reco = raiz;
+        do {
+            if (reco.getId() == id){
+                return reco.getData();
+            }
+            reco = reco.getSiguiente();
+        } while (reco != raiz);
+        return null;
+    }
 
     public void imprimir() {
         NodoCircular<T> reco = raiz;

@@ -1,0 +1,108 @@
+package Analizadores;
+
+import java_cup.runtime.Symbol;
+import Estructuras.*;
+import POJOS.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+
+parser code
+{:
+    private Symbol sym;
+    public Contenedor con = new Contenedor();
+
+    public Symbol getS(){
+        return this.sym;
+    }
+
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("reportfatal "+message+info);
+    }
+    public void report_fatal_error(Symbol cur) {
+        System.out.println("unrecovered_syntax_error");
+    }
+
+    public void syntax_error(Symbol cur_token) {
+        System.out.println(symbl_name_from_id(expected_token_ids().get(0)));
+        System.out.println("syntaxerr: " + symbl_name_from_id(cur_token.sym) +" Linea: "+cur_token.right+" Columna: "+cur_token.left+" Valor:"+cur_token.value);
+    }
+
+    protected int error_sync_size() {
+        return 1;
+    }
+
+:};
+
+terminal USUARIO,ESTUDIANTE,CATEDRATICO,EDIFICIO,SALON,CURSO,HORARIO,ASIGNAR,SUPER,COLABORADOR,ESTUDIANTEP,NUMERO,PARENTESISA,
+    PARENTESISC,PUNTOC,COMA,COMILLAS,ID,STRING;
+
+non terminal inicio, agregar, estudiante,catedratico,usuario,edificio,salon,curso,horario,asignacion;
+non terminal String string, tipo;
+start with inicio;
+
+inicio::=
+    inicio agregar
+    | agregar
+;
+
+agregar::=
+    estudiante
+    | usuario
+    | edificio
+    | catedratico
+    | salon
+    | curso
+    | horario
+    | asignacion
+;
+
+estudiante::=
+    ESTUDIANTE PARENTESISA NUMERO:e1 COMA string:e2 COMA string:e3 PARENTESISC PUNTOC
+    {: con.insertar_estudiante(Integer.parseInt(e1.toString()), e2, e3); :}
+;
+
+usuario::=
+    USUARIO PARENTESISA NUMERO:e1 COMA string:e2 COMA string:e3 COMA tipo:e4 PARENTESISC PUNTOC
+    {: con.insertar_usuario(Integer.parseInt(e1.toString()), e2, e3, e4); :}
+;
+
+edificio::=
+    EDIFICIO PARENTESISA string:e1 PARENTESISC PUNTOC
+    {: con.insertar_edificio(e1); :}
+;
+
+salon::=
+    SALON PARENTESISA string:e1 COMA NUMERO:e2 COMA NUMERO:e3 PARENTESISC PUNTOC
+    {: con.insertar_salon(e1, Integer.parseInt(e2.toString()),Integer.parseInt(e3.toString())); :}
+;
+
+catedratico::=
+    CATEDRATICO PARENTESISA NUMERO:e1 COMA string:e2 COMA string:e3 PARENTESISC PUNTOC
+    {: con.insertar_catedratico(Integer.parseInt(e1.toString()), e2, e3); :}
+;
+
+curso::=
+    CURSO PARENTESISA NUMERO:e1 COMA string:e2 COMA NUMERO:e3 COMA NUMERO:e4 PARENTESISC PUNTOC
+    {: con.insertar_curso(Integer.parseInt(e1.toString()), e2, Integer.parseInt(e3.toString()),Integer.parseInt(e4.toString())); :}
+;
+
+horario::=
+    HORARIO PARENTESISA NUMERO:e1 COMA string:e2 COMA string:e3 COMA NUMERO:e4 COMA NUMERO:e5 COMA string:e6 COMA NUMERO:e7 PARENTESISC PUNTOC
+    {: con.insertar_horario(Integer.parseInt(e1.toString()), e2, e3, Integer.parseInt(e4.toString()), Integer.parseInt(e5.toString()), e6, Integer.parseInt(e7.toString())); :}
+;
+
+asignacion::=
+    ASIGNAR PARENTESISA NUMERO:e1 COMA NUMERO:e2 COMA NUMERO:e3 COMA NUMERO:e4 PARENTESISC PUNTOC
+    {: con.insertar_asignacion(Integer.parseInt(e1.toString()), Integer.parseInt(e2.toString()), Integer.parseInt(e3.toString()), Integer.parseInt(e4.toString())); :}
+;
+
+tipo::=
+    SUPER:e1 {: RESULT = e1.toString(); :}
+    | COLABORADOR:e1 {: RESULT = e1.toString(); :}
+    | ESTUDIANTEP:e1 {: RESULT = e1.toString(); :}
+;
+
+string::=
+    COMILLAS STRING:e1 COMILLAS {: RESULT = e1.toString(); :}
+;

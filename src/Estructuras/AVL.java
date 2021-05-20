@@ -202,6 +202,20 @@ public class AVL<T> {
         }
         return retorno;
     }
+    
+    public T obtener(int id) {
+        NodoAVL<T> temporal = raiz;
+        while (temporal != null) {
+            if (id > temporal.getId()) {
+                temporal = temporal.getDerecha();
+            } else if (id < temporal.getId()) {
+                temporal = temporal.getIzquierda();
+            } else if (id == temporal.getId()) {
+                return temporal.getData();
+            }
+        }
+        return null;
+    }
 
     /**
      * Método para eliminar el elemento con el id que se envia

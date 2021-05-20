@@ -6,6 +6,7 @@
 package Estructuras;
 
 import POJOS.Curso;
+import POJOS.Horario;
 
 /**
  *
@@ -15,6 +16,7 @@ public class B {
 
     NodoB raiz;
     int t;
+    public final String INICIO_GRAPH = "digraph G{\n"+"nodesep=1;\nrankdir=TB;\nnode[shape=record,width = 1, height = 1];\n";
 
     //Constructor
     public B(int t) {
@@ -82,6 +84,17 @@ public class B {
             System.out.println("No se ha encontrado un nodo con el valor ingresado");
         } else {
             print(temp);
+        }
+    }
+
+    public Horario obtener(int llave) {
+        NodoB temp = buscar(raiz, llave);
+
+        if (temp == null) {
+            return null;
+        } else {
+            int lugar = temp.find(llave);
+            return temp.getData()[lugar];
         }
     }
 
@@ -166,7 +179,7 @@ public class B {
         }
     }
 
-    private NodoB getPadre(NodoB T, NodoB N) {
+    private NodoB obtener_padre(NodoB T, NodoB N) {
         if (this.raiz == N) {
             return null;
         }
@@ -176,7 +189,7 @@ public class B {
             }
             if (T.getHijos()[j] != null) {
                 if (!T.getHijos()[j].isHoja()) {
-                    NodoB X = getPadre(T.getHijos()[j], N);
+                    NodoB X = obtener_padre(T.getHijos()[j], N);
                     if (X != null) {
                         return X;
                     }
@@ -190,7 +203,7 @@ public class B {
         if (desbalanceado.getN() < (t - 1)) {
             System.out.println("antes de balancear");
             mostrar_arbol();
-            NodoB padre = getPadre(raiz, desbalanceado);
+            NodoB padre = obtener_padre(raiz, desbalanceado);
             int j = 1;
             while (padre.getHijos()[j - 1] != desbalanceado) {
                 j++;
@@ -222,7 +235,7 @@ public class B {
                 }
             } else {
                 if (seleccionado.getN() < t) {
-                    nuevo = getPadre(raiz, seleccionado);
+                    nuevo = obtener_padre(raiz, seleccionado);
                     j = 1;
 
                     while (nuevo.getHijos()[j - 1] != seleccionado) {
@@ -232,7 +245,7 @@ public class B {
                     if (j > 1) {
                         System.out.println(j);
                         nuevo.imprimir();
-                        juntar_nodos(getPadre(raiz, seleccionado), j - 1);
+                        juntar_nodos(obtener_padre(raiz, seleccionado), j - 1);
                         mostrar_arbol();
                         for (int i = 0; i < 3; i++) {
                             System.out.println(j);
@@ -240,13 +253,13 @@ public class B {
                     } else {
                         System.out.println(j);
                         nuevo.imprimir();
-                        juntar_nodos(getPadre(raiz, seleccionado), j);
+                        juntar_nodos(obtener_padre(raiz, seleccionado), j);
                         mostrar_arbol();
                         for (int i = 0; i < 3; i++) {
                             System.out.println(j);
                         }
                     }
-                    disminuir_altura(getPadre(raiz, seleccionado));
+                    disminuir_altura(obtener_padre(raiz, seleccionado));
                 }
             }
         }
@@ -300,10 +313,10 @@ public class B {
         for (int j = 1; j <= derecha.getN(); j++) {
             izquierda.getLlaves()[j + k] = derecha.getLlaves()[j - 1];
         }
-        
+
         if (!derecha.isHoja()) {
-            for (int j = 1; j <= derecha.getN()+1; j++) {
-                izquierda.getHijos()[j + k] = derecha.getHijos()[j-1];
+            for (int j = 1; j <= derecha.getN() + 1; j++) {
+                izquierda.getHijos()[j + k] = derecha.getHijos()[j - 1];
             }
         }
         izquierda.setN(izquierda.getN() + derecha.getN() + 1);
@@ -346,6 +359,42 @@ public class B {
                         j++;
                     }
                     dividir(padre, j, encontrado);
+                }
+            }
+        }
+    }
+
+    public void insertar_horario(int llave, Horario insertar) {
+        NodoB r = raiz;
+
+        //Si el nodo esta lleno lo debe separar antes de insertar
+        if (r.n == ((2 * t) - 1)) {
+            NodoB nuevo = new NodoB(t);
+            raiz = nuevo;
+            nuevo.hoja = false;
+            nuevo.n = 0;
+            nuevo.hijos[0] = r;
+            dividir_horario(nuevo, 0, r);
+            insertarB_horario(nuevo, llave, insertar);
+        } else {
+            insertarB_horario(r, llave, insertar);
+            NodoB encontrado = buscar(r, llave);
+            if (encontrado.n == (2 * t) - 1 && encontrado == raiz) {
+                NodoB s = new NodoB(t);
+                raiz = s;
+                s.hoja = false;
+                s.n = 0;
+                s.hijos[0] = encontrado;
+                dividir_horario(s, 0, encontrado);
+            } else {
+                if (encontrado.n == (2 * t - 1)) {
+                    NodoB padre = encontrado.getPadre();
+                    int j = 0;
+                    //Busca la posicion del hijo
+                    while (j < padre.n && encontrado.llaves[t] > padre.llaves[j]) {
+                        j++;
+                    }
+                    dividir_horario(padre, j, encontrado);
                 }
             }
         }
@@ -449,8 +498,110 @@ public class B {
         }
     }
 
+    private void insertarB_horario(NodoB destino, int llave, Horario insertar) {
+        //Si es una hoja
+        if (destino.hoja) {
+            int i = destino.n; //cantidad de valores del nodo
+            //busca la posicion i donde asignar el valor
+            while (i >= 1 && llave < destino.llaves[i - 1]) {
+                destino.llaves[i] = destino.llaves[i - 1];//Desplaza los valores mayores a key
+                destino.data[i] = destino.data[i - 1];
+                i--;
+            }
+            destino.llaves[i] = llave;//asigna el valor al nodo
+            destino.data[i] = insertar;
+            destino.n++; //aumenta la cantidad de elementos del nodo
+        } else {
+            int j = 0;
+            //Busca la posicion del hijo
+            while (j < destino.n && llave > destino.llaves[j]) {
+                j++;
+            }
+
+            //Si el nodo hijo esta lleno lo separa
+            if (destino.hijos[j].n == (2 * t - 1)) {
+                dividir_horario(destino, j, destino.hijos[j]);
+                if (llave > destino.llaves[j]) {
+                    j++;
+                }
+            }
+            //System.out.println("insertar llave " + key + " en " + Arrays.toString(x.key));
+            insertarB_horario(destino.hijos[j], llave, insertar);
+        }
+    }
+
+    private void dividir_horario(NodoB padre, int i, NodoB izquierda) {
+        //Nodo temporal que sera el hijo i + 1 de x
+        NodoB derecha = new NodoB(t);
+        derecha.hoja = izquierda.hoja;
+        derecha.n = (t - 1);
+
+        //Copia las ultimas (t - 1) claves del nodo y al inicio del nodo z      // z = |40|50| | | |
+        for (int j = 0; j < (t - 1); j++) {
+            derecha.llaves[j] = izquierda.llaves[(j + t)];
+            derecha.data[j] = izquierda.data[j + t];
+        }
+
+        //Si no es hoja hay que reasignar los nodos hijos
+        if (!izquierda.hoja) {
+            for (int k = 0; k < t; k++) {
+                derecha.hijos[k] = izquierda.hijos[(k + t)];
+            }
+        }
+
+        //nuevo tamanio de y                                                    // x =            | | | | | |
+        izquierda.n = (t - 1);                                                          //               /   \
+        //  |10|20| | | |
+        //Mueve los hijos de x para darle espacio a z
+        for (int j = padre.n; j > i; j--) {
+            padre.hijos[(j + 1)] = padre.hijos[j];
+        }
+        //Reasigna el hijo (i+1) de x                                           // x =            | | | | | |
+        padre.hijos[(i + 1)] = derecha;                                                   //               /   \
+        //  |10|20| | | |     |40|50| | | |
+        //Mueve las claves de x
+        for (int j = padre.n; j > i; j--) {
+            padre.llaves[(j + 1)] = padre.llaves[j];
+            padre.data[(j + 1)] = padre.data[j];
+        }
+
+        //Agrega la clave situada en la mediana                                 // x =            |30| | | | |
+        padre.llaves[i] = izquierda.llaves[(t - 1)];                                              //               /    \
+        padre.data[i] = izquierda.data[(t - 1)];
+        padre.n++;                                                                  //  |10|20| | | |      |40|50| | | |
+
+        if (padre == raiz) {
+            padre.setPadre(null);
+        }
+        derecha.setPadre(padre);
+        izquierda.setPadre(padre);
+        if (padre.getPadre() == null && padre.n == (2 * t - 1)) {
+            NodoB s = new NodoB(t);
+            NodoB r = raiz;
+            raiz = s;
+            s.hoja = false;
+            s.n = 0;
+            s.hijos[0] = r;
+            dividir_horario(s, 0, r);
+        } else {
+            if (padre.n == (2 * t - 1)) {
+                NodoB p = padre.getPadre();
+                int j = 0;
+                //Busca la posicion del hijo
+                while (j < p.n && padre.llaves[t] > p.llaves[j]) {
+                    j++;
+                }
+                dividir_horario(p, j, padre);
+            }
+        }
+    }
+
     public void mostrar_arbol() {
         print(raiz);
+    }
+    
+    public String crear_doc() {
+        return INICIO_GRAPH+graphviz(this.raiz)+"}";
     }
 
     //Print en preorder
@@ -458,7 +609,7 @@ public class B {
         n.imprimir();
         System.out.println("");
         //System.out.println(Arrays.toString(n.getKey()));
-        //System.out.println("node0[label =" + n.graphviz() + "];");
+        System.out.println("node"+n.llaves[0]+"[label =" + n.graphviz() + "];");
 
         //Si no es hoja
         if (!n.hoja) {
@@ -467,9 +618,28 @@ public class B {
             for (int j = 0; j <= n.n; j++) {
                 if (n.hijos[j] != null) {
                     print(n.hijos[j]);
+                    System.out.println("node"+n.llaves[0]+":f"+j+"->node"+n.hijos[j].llaves[0]+";");
                 }
             }
         }
+    }
+    
+    private String graphviz(NodoB n) {
+        String retorno = "\n";
+        retorno += "node"+n.llaves[0]+"[label =" + n.graphviz() + "];\n";
+
+        //Si no es hoja
+        if (!n.hoja) {
+            //System.out.println("");
+            //recorre los nodos para saber si tiene hijos
+            for (int j = 0; j <= n.n; j++) {
+                if (n.hijos[j] != null) {
+                    retorno+= graphviz(n.hijos[j]);
+                    retorno+="node"+n.llaves[0]+":f"+j+"->node"+n.hijos[j].llaves[0]+";\n";
+                }
+            }
+        }
+        return retorno;
     }
 
     public NodoB getRaiz() {
@@ -479,7 +649,7 @@ public class B {
     public void setRaiz(NodoB raiz) {
         this.raiz = raiz;
     }
-    
+
     public class NodoB<T> {
 
         int n; //numero de claves almacenadas en el nodo
@@ -487,7 +657,7 @@ public class B {
         int[] llaves;  //almacena las claves en el nodo
         NodoB[] hijos; //arreglo con referencias a los hijos
         NodoB padre;
-        Curso data[];
+        Horario data[];
 
         //Constructores
         public NodoB(int t, T data) {
@@ -496,7 +666,7 @@ public class B {
             llaves = new int[((2 * t) - 1)];
             hijos = new NodoB[(2 * t)];
             this.padre = null;
-            this.data = new Curso[((2 * t) - 1)];
+            this.data = new Horario[((2 * t) - 1)];
         }
 
         public NodoB(int t) {
@@ -504,7 +674,7 @@ public class B {
             hoja = true;
             llaves = new int[((2 * t) - 1)];
             hijos = new NodoB[(2 * t)];
-            data = new Curso[((2 * t) - 1)];
+            data = new Horario[((2 * t) - 1)];
         }
 
         public void imprimir() {
@@ -523,14 +693,15 @@ public class B {
             String retorno = "";
             retorno += "\"";
             for (int i = 0; i < n; i++) {
+                System.out.println(i);
                 if (i != 0) {
                     retorno += " | ";
                 }
                 retorno += "<f" + i + ">";
                 if (i < n - 1) {
-                    retorno += "| " + llaves[i];
+                    retorno += "| " + data[i].toString();
                 } else {
-                    retorno += "| " + llaves[i] + " |<f" + (n + 1) + ">";
+                    retorno += "| " + data[i].toString()+ " |<f" + (i + 1) + ">";
                 }
             }
             retorno += "\"";
@@ -586,15 +757,12 @@ public class B {
             this.padre = padre;
         }
 
-        public Curso[] getData() {
+        public Horario[] getData() {
             return data;
         }
 
-        public void setData(Curso[] data) {
+        public void setData(Horario[] data) {
             this.data = data;
         }
-
-        
-
     }
 }

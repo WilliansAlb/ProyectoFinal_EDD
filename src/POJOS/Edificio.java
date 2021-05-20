@@ -14,12 +14,18 @@ import Estructuras.SimpleEnlazada;
 public class Edificio {
     private int id;
     private String nombre;
-    private SimpleEnlazada edificios;
+    private SimpleEnlazada salones;
 
+    public Edificio(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+        this.salones = new SimpleEnlazada();
+    }
+    
     public Edificio(int id, String nombre, SimpleEnlazada edificios) {
         this.id = id;
         this.nombre = nombre;
-        this.edificios = edificios;
+        this.salones = edificios;
     }
 
     public int getId() {
@@ -38,12 +44,12 @@ public class Edificio {
         this.nombre = nombre;
     }
 
-    public SimpleEnlazada getEdificios() {
-        return edificios;
+    public SimpleEnlazada getSalones() {
+        return salones;
     }
 
-    public void setEdificios(SimpleEnlazada edificios) {
-        this.edificios = edificios;
+    public void setSalones(SimpleEnlazada salones) {
+        this.salones = salones;
     }
     
     

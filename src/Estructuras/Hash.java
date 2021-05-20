@@ -5,9 +5,12 @@
  */
 package Estructuras;
 
+import POJOS.Estudiante;
+
 /**
  *
  * @author willi
+ * @param <T>
  */
 public class Hash<T> {
 
@@ -15,6 +18,10 @@ public class Hash<T> {
     private int ocupadas;
     private NodoHash<T> raiz;
     public static final double CARGA = 0.55;
+    public static final String INICIO_GRAPH = "digraph G{\n" +
+"	nodesep=0.3;\n" +
+"	rankdir=LR;\n" +
+"	node [shape=record, width = .1, height = .1];\n	node[width = 1.5];\n";
 
     public Hash() {
         size = 37;
@@ -38,7 +45,8 @@ public class Hash<T> {
     }
 
     /**
-     * Método de prueba para ver si efectivamente se generan los encabezados para los datos en las tablas hash
+     * Método de prueba para ver si efectivamente se generan los encabezados
+     * para los datos en las tablas hash
      */
     public void imprimir() {
         NodoHash<T> temp = raiz;
@@ -49,31 +57,59 @@ public class Hash<T> {
     }
 
     /**
-     * Método que imprime todas las llaves y los valores que contiene la tabla hash
+     * Método que imprime todas las llaves y los valores que contiene la tabla
+     * hash
      */
     public void imprimir2() {
         NodoHash<T> temp = raiz;
         while (temp != null) {
             if (temp.getData() != null) {
-                System.out.println("key: "+temp.getId()+" value: "+temp.getData().toString());
+                System.out.println("key: " + temp.getId() + " value: " + temp.getData().toString());
             }
             temp = temp.getSiguiente();
         }
     }
+    
+    public String escribir_doc() {
+        NodoHash<T> temp = raiz;
+        String retorno = INICIO_GRAPH+"node0B[label =\"";
+        //[label = "<f0> 1|<f1> 2|<f2> 3|<f3> 4|<f4> 5|<f5> 6|<f6> 7|<f7> 8",height=2.5];
+        for (int i = 0; i < size; i++) {
+            retorno += "<f"+i+"> "+i+" ";
+            if (i!=size-1){
+                retorno+="| ";
+            }
+        }
+        retorno+="\", height=2.5];\n";
+        while (temp != null) {
+            if (temp.getData() != null) {
+                retorno+="node"+temp.getId()+"[label = \" "+temp.getData().toString()+" \"];\n";
+                retorno+="node0B:f"+temp.getId()+" -> node"+temp.getId()+":n;\n";
+            }
+            temp = temp.getSiguiente();
+        }
+        retorno+="}";
+        return retorno;
+    }
 
     /**
      * Método para insertar a la tabla los datos enviados
+     *
      * @param id el id de los datos
      * @param data los datos a ingresar
+     * @return 
      */
-    public void insertar(int id, T data) {
+    public boolean insertar(int id, T data) {
         //Revisa si se ha sobrepasado el porcentaje de carga máxima para la tabla
+        System.out.println("llega acá");
         if (porcentaje_max()) {
             int llave = getKey(id);
             if (ocupada(llave)) {
-                doble_dispercion(id, data, 0);
+                return doble_dispercion(id, data, 0);
             } else {
+                System.out.println("inserta");
                 agregar(llave, data);
+                return true;
             }
         } else {
             int temp = size + 1;
@@ -84,31 +120,92 @@ public class Hash<T> {
                 temp++;
             }
             rehashing(temp);
-            insertar(id, data);
+            return insertar(id, data);
         }
     }
+
     /**
-     * Método que resuelve los conflictos por colisiones mediante el metodo de doble dispercion
+     * Método que resuelve los conflictos por colisiones mediante el metodo de
+     * doble dispercion
+     *
      * @param id el id del nodo a colocar
      * @param data el POJO a almacenar
      * @param conteo las veces que el método se repite
+     * @return 
      */
-    public void doble_dispercion(int id, T data, int conteo) {
+    public boolean doble_dispercion(int id, T data, int conteo) {
         int key = ((id % 7) + 1) * conteo;
-        if (ocupada(key)) {
-            if (key > size && conteo > 8) {
-                System.out.println("excedido");
+        if (key > size) {
+            if (ocupada(key)) {
+                return doble_dispercion(id, data, conteo + 1);
             } else {
-                System.out.println(conteo);
-                doble_dispercion(id, data, conteo+1);
+                agregar(key, data);
+                return true;
             }
         } else {
-            agregar(key, data);
+            return false;
         }
     }
+
+    public Estudiante buscar(int id) {
+        int key = getKey(id);
+        NodoHash<T> obtener = obtener(key);
+        if (obtener.data != null) {
+            Estudiante te = (Estudiante) obtener.getData();
+            if (te.getCarnet() == id) {
+                return te;
+            } else {
+                return buscar(id,0);
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public Estudiante buscar(int id, int conteo) {
+        int key = ((id % 7) + 1) * conteo;
+        if (key < size) {
+            NodoHash<T> obtener = obtener(key);
+            if (obtener.getData() != null) {
+                Estudiante te = (Estudiante) obtener.getData();
+                if (te.getCarnet() == id) {
+                    return te;
+                } else {
+                    return buscar(id, conteo + 1);
+                }
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public NodoHash<T> obtener(int id) {
+        NodoHash<T> temp = raiz;
+        while (temp != null) {
+            if (temp.getId() == id) {
+                return temp;
+            }
+            temp = temp.getSiguiente();
+        }
+        return null;
+    }
     
+    public Estudiante obtener_index(int id) {
+        NodoHash<T> temp = raiz;
+        while (temp != null) {
+            if (temp.getId() == id) {
+                return (Estudiante)temp.getData();
+            }
+            temp = temp.getSiguiente();
+        }
+        return null;
+    }
+
     /**
      * Método que hace un rehashing cuando se ha llegado al factor de carga
+     *
      * @param resize el nuevo tamaño de la tabla hash
      */
     public void rehashing(int resize) {
@@ -118,11 +215,12 @@ public class Hash<T> {
         size = nuevo.getSize();
         raiz = nuevo.getRaiz();
     }
-    
+
     /**
      * Método que llena la tabla hash con los datos de la anterior tabla
+     *
      * @param vacio
-     * @return 
+     * @return
      */
     public NodoHash<T> llenar(Hash vacio) {
         NodoHash<T> temp = raiz;
@@ -136,6 +234,7 @@ public class Hash<T> {
 
     /**
      * Método que comprueba si un número es primo o compuesto
+     *
      * @param numero el numero a comprobar
      * @return true si el numero enviado es primo
      */
@@ -151,9 +250,11 @@ public class Hash<T> {
         }
         return primo;
     }
-    
+
     /**
-     * Método que comprueba si se ha sobrepasado el factor de carga de la tabla hash
+     * Método que comprueba si se ha sobrepasado el factor de carga de la tabla
+     * hash
+     *
      * @return true si no se ha sobrepasado el factor
      */
     public boolean porcentaje_max() {
@@ -161,7 +262,9 @@ public class Hash<T> {
     }
 
     /**
-     * Método que genera la llave cuando la situación es ideal y no se tiene conflictos
+     * Método que genera la llave cuando la situación es ideal y no se tiene
+     * conflictos
+     *
      * @param id el id al cual se le hará el hash
      * @return la llave generada
      */
@@ -170,7 +273,9 @@ public class Hash<T> {
     }
 
     /**
-     * Método que comprueba que el lugar donde se insertarán los datos está libre en la tabla hash
+     * Método que comprueba que el lugar donde se insertarán los datos está
+     * libre en la tabla hash
+     *
      * @param id la llave a comprobar
      * @return true si la llave esta libre para ingresar datos
      */
@@ -180,6 +285,7 @@ public class Hash<T> {
             if (temp.getId() == id && temp.getData() != null) {
                 return true;
             }
+            System.out.println("iteracion");
             temp = temp.getSiguiente();
         }
         return false;
@@ -187,6 +293,7 @@ public class Hash<T> {
 
     /**
      * Método que ingresa los datos a su lugar correspondiente en la tabla hash
+     *
      * @param llave la llave generada
      * @param data los datos a ingresar
      */
@@ -198,6 +305,7 @@ public class Hash<T> {
                 ocupadas++;
                 break;
             }
+            System.out.println("a ver");
             temp = temp.getSiguiente();
         }
     }
@@ -262,5 +370,4 @@ public class Hash<T> {
             this.data = data;
         }
     }
-
 }

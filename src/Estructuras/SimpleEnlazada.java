@@ -153,7 +153,7 @@ public class SimpleEnlazada<T> {
         this.raiz = raiz;
     }
 
-    private class NodoSimple<T> {
+    public class NodoSimple<T> {
 
         private NodoSimple<T> siguiente;
         private T data;

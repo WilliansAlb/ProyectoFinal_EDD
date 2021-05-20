@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Estructuras/B.java</file>
             <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/POJOS/Catedratico.java</file>
-            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/proyectofinal_edd/ProyectoFinal_EDD.java</file>
-            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Estructuras/AVL.java</file>
-            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Test/Tests.java</file>
+            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Analizadores/lexer.flex</file>
+            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Graficas/Principal.java</file>
+            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/POJOS/Usuario.java</file>
+            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Analizadores/parser.cup</file>
+            <file>file:/C:/Users/willi/OneDrive/Documentos/NetBeansProjects/ProyectoFinal_EDD/src/Analizadores/Generador.java</file>
         </group>
     </open-files>
 </project-private>

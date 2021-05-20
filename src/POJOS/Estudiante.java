@@ -14,6 +14,10 @@ public class Estudiante {
     private String nombre;
     private String direccion;
 
+    public Estudiante() {
+    }
+
+    
     public Estudiante(int carnet, String nombre, String direccion) {
         this.carnet = carnet;
         this.nombre = nombre;
@@ -46,7 +50,7 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return "carné: "+carnet+" nombre: "+nombre+" direccion: "+direccion; //To change body of generated methods, choose Tools | Templates.
+        return "carné: "+carnet+"\\n nombre: "+nombre+"\\n direccion: "+direccion; //To change body of generated methods, choose Tools | Templates.
     }
     
     

@@ -34,7 +34,7 @@ public class Tests {
         circular.insertar2(21, new Estudiante(21, "Orozco", "San Lorenzo"));
         circular.insertar2(202330521, new Estudiante(202330521, "Orozco", "San Lorenzo"));
         //circular.imprimir();
-        //circular.imprimir();
+        circular.imprimir();
         circular.eliminar(201930221);
         System.out.println("\n\n\n---------------------------------------------------------\n\n");
         circular.imprimir();
