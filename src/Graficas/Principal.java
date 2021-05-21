@@ -9,7 +9,9 @@ import Analizadores.Lexer;
 import Analizadores.Parser;
 import Estructuras.*;
 import POJOS.*;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseEvent;
 import java.io.BufferedWriter;
@@ -28,9 +30,13 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.JTableHeader;
 
@@ -48,6 +54,7 @@ public class Principal extends javax.swing.JFrame {
     SimpleEnlazada salones = new SimpleEnlazada();
     Contenedor contenedor;
     public int seleccion_estudiante = -1;
+    public int llave_seleccion = -1;
     private int filasTabla;
     private int columnasTabla;
 
@@ -78,6 +85,10 @@ public class Principal extends javax.swing.JFrame {
         btn_cancel_catedratico.setVisible(false);
         btn_cancel_salon.setVisible(false);
         btn_cancel_curso.setVisible(false);
+        btn_cancel_usuario.setVisible(false);
+        tab_global.setEnabledAt(1, false);
+        tab_global.setEnabledAt(2, false);
+        tab_global.setEnabledAt(3, false);
     }
 
     /**
@@ -90,11 +101,11 @@ public class Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jTextField1 = new javax.swing.JTextField();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        tab_global = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txt_archivo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btn_ingresar = new javax.swing.JButton();
         cambiante = new javax.swing.JPanel();
         panel_text = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -114,7 +125,7 @@ public class Principal extends javax.swing.JFrame {
         text_user = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         text_password = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        combo_tipo = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         btn_cancel_usuario = new javax.swing.JButton();
         btn_usuario = new javax.swing.JButton();
@@ -180,6 +191,21 @@ public class Principal extends javax.swing.JFrame {
         btn_curso = new javax.swing.JButton();
         btn_cancel_curso = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
+        jscroll_estudiantes2 = new javax.swing.JScrollPane();
+        tabla_estudiantes2 = new javax.swing.JTable();
+        jscroll_horarios = new javax.swing.JScrollPane();
+        tabla_horarios = new javax.swing.JTable();
+        jPanel24 = new javax.swing.JPanel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        text_carnet_asignacion = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        text_codigo_horario = new javax.swing.JTextField();
+        jLabel31 = new javax.swing.JLabel();
+        text_zona = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        text_final = new javax.swing.JTextField();
+        btn_asignar = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel13 = new javax.swing.JPanel();
@@ -194,6 +220,8 @@ public class Principal extends javax.swing.JFrame {
         label_catedraticos = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         label_cursos = new javax.swing.JLabel();
+        jPanel23 = new javax.swing.JPanel();
+        label_horario_asignacion = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -212,10 +240,10 @@ public class Principal extends javax.swing.JFrame {
         txt_archivo.setDisabledTextColor(new java.awt.Color(255, 255, 255));
         txt_archivo.setEnabled(false);
 
-        jButton1.setText("INGRESAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_ingresar.setText("INGRESAR");
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_ingresarActionPerformed(evt);
             }
         });
 
@@ -298,7 +326,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(btn_ingresar)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -308,7 +336,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txt_archivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_ingresar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addComponent(cambiante, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
@@ -316,7 +344,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("CARGA MASIVA", jPanel1);
+        tab_global.addTab("CARGA MASIVA", jPanel1);
 
         tabla_usuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -329,6 +357,11 @@ public class Principal extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabla_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_usuariosMouseClicked(evt);
+            }
+        });
         jscroll_usuarios.setViewportView(tabla_usuarios);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -340,13 +373,23 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel13.setText("PASSWORD:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "super", "colaborador", "estudiante" }));
+        combo_tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "super", "colaborador", "estudiante" }));
 
         jLabel14.setText("TIPO:");
 
         btn_cancel_usuario.setText("CANCELAR");
+        btn_cancel_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancel_usuarioActionPerformed(evt);
+            }
+        });
 
         btn_usuario.setText("AGREGAR");
+        btn_usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_usuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
@@ -371,7 +414,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(combo_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_usuario)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -393,7 +436,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(text_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo_tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(btn_cancel_usuario)
                     .addComponent(btn_usuario))
@@ -941,20 +984,138 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(crea_est)
         );
 
-        jTabbedPane1.addTab("CRUD", jPanel2);
+        tab_global.addTab("CRUD", jPanel2);
+
+        tabla_estudiantes2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_estudiantes2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_estudiantes2MouseClicked(evt);
+            }
+        });
+        jscroll_estudiantes2.setViewportView(tabla_estudiantes2);
+
+        tabla_horarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_horarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_horariosMouseClicked(evt);
+            }
+        });
+        jscroll_horarios.setViewportView(tabla_horarios);
+
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setText("ASIGNACION DE CURSO A ESTUDIANTE");
+
+        jLabel29.setText("CARNET:");
+
+        text_carnet_asignacion.setEnabled(false);
+
+        jLabel30.setText("CODIGO HORARIO:");
+
+        text_codigo_horario.setEnabled(false);
+
+        jLabel31.setText("ZONA:");
+
+        jLabel32.setText("FINAL:");
+
+        btn_asignar.setText("ASIGNAR");
+        btn_asignar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_asignarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel24Layout.createSequentialGroup()
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_carnet_asignacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_codigo_horario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel31)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_zona)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_final)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_asignar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(text_carnet_asignacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30)
+                    .addComponent(text_codigo_horario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31)
+                    .addComponent(text_zona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32)
+                    .addComponent(text_final, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_asignar))
+                .addGap(0, 6, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 682, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_horarios, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                    .addComponent(jscroll_estudiantes2)
+                    .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 497, Short.MAX_VALUE)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_estudiantes2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_horarios, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        jTabbedPane1.addTab("ASIGNAR", jPanel11);
+        tab_global.addTab("ASIGNAR", jPanel11);
 
         label_horario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -1082,6 +1243,25 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("CURSOS", jPanel20);
 
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_horario_asignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel23Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_horario_asignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("HORARIO Y ASIGNACION", jPanel23);
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
@@ -1093,17 +1273,17 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jTabbedPane2)
         );
 
-        jTabbedPane1.addTab("MOSTRAR", jPanel12);
+        tab_global.addTab("MOSTRAR", jPanel12);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tab_global)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addComponent(tab_global)
         );
 
         pack();
@@ -1113,7 +1293,7 @@ public class Principal extends javax.swing.JFrame {
         jsp.setBounds(0, 0, panel_text.getWidth(), panel_text.getHeight());
     }//GEN-LAST:event_formComponentResized
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filtro2 = new FileNameExtensionFilter("Archivo de texto", "txt");
         chooser.setFileFilter(filtro2);
@@ -1132,25 +1312,36 @@ public class Principal extends javax.swing.JFrame {
             }
 
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_ingresarActionPerformed
 
     private void btn_cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarActionPerformed
-        cambiante.setVisible(false);
-        panel_img.setVisible(true);
-        String ST = textArea.getText();
-        if (!ST.isEmpty()) {
-            try {
-                Parser obtener = new Parser(new Lexer(new StringReader(ST)));
-                obtener.parse();
-                contenedor = obtener.con;
-                escribir_resultado(contenedor.resultado);
-                construir_tabla_estudiantes();
-                construir_tabla_edificios();
-                construir_tabla_usuarios();
-                construir_tabla_catedraticos();
-                construir_tabla_cursos();
-            } catch (Exception ex) {
-                Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        if (btn_cargar.getText().equalsIgnoreCase("LOGIN")) {
+            login();
+        } else if (btn_cargar.getText().equalsIgnoreCase("CERRAR SESION")) {
+            tab_global.setEnabledAt(1, false);
+            tab_global.setEnabledAt(2, false);
+            tab_global.setEnabledAt(3, false);
+            btn_cargar.setText("LOGIN");
+        } else {
+            cambiante.setVisible(false);
+            panel_img.setVisible(true);
+            btn_ingresar.setVisible(false);
+            String ST = textArea.getText();
+            if (!ST.isEmpty()) {
+                try {
+                    Parser obtener = new Parser(new Lexer(new StringReader(ST)));
+                    obtener.parse();
+                    contenedor = obtener.con;
+                    escribir_resultado(contenedor.resultado);
+                    construir_tabla_estudiantes();
+                    construir_tabla_edificios();
+                    construir_tabla_usuarios();
+                    construir_tabla_catedraticos();
+                    construir_tabla_cursos();
+                    construir_tabla_horarios();
+                } catch (Exception ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }//GEN-LAST:event_btn_cargarActionPerformed
@@ -1525,7 +1716,7 @@ public class Principal extends javax.swing.JFrame {
                     int cren = Integer.parseInt(creditos);
                     Curso en = ((Curso) contenedor.cursos.obtener(idn));
                     if (en == null) {
-                        en = new Curso(idn,nombre,sen,cren);
+                        en = new Curso(idn, nombre, sen, cren);
                         contenedor.cursos.insertar2(idn, en);
                         limpiar_campos_curso();
                         construir_tabla_cursos();
@@ -1542,6 +1733,200 @@ public class Principal extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btn_cursoActionPerformed
+
+    private void tabla_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_usuariosMouseClicked
+        int fila = tabla_usuarios.rowAtPoint(evt.getPoint());
+        int columna = tabla_usuarios.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_usuarios.getColumnCount() - 2) {
+            text_id.setEnabled(false);
+            text_id.setText(tabla_usuarios.getModel().getValueAt(fila, 0).toString());
+            btn_cancel_usuario.setVisible(true);
+            text_user.setText(tabla_usuarios.getModel().getValueAt(fila, 1).toString());
+            text_password.setText(tabla_usuarios.getModel().getValueAt(fila, 2).toString());
+            combo_tipo.setSelectedItem(tabla_usuarios.getModel().getValueAt(fila, 3).toString());
+            combo_tipo.setEnabled(false);
+            btn_usuario.setText("MODIFICAR");
+        } else if (columna == tabla_usuarios.getColumnCount() - 1) {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro quieres eliminar al usuario?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+            if (opcion == JOptionPane.OK_OPTION) {
+                int ed = Integer.parseInt(tabla_usuarios.getModel().getValueAt(fila, 0).toString());
+                if (contenedor.usuarios.eliminar(ed)) {
+                    construir_tabla_usuarios();
+                    JOptionPane.showMessageDialog(null, "Usuario eliminado correctamente");
+                    escribir_doc("circular_usuarios", label_usuarios, contenedor.usuarios.escribir_doc("U"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error inesperado, no se elimino el curso");
+                }
+            }
+        }
+    }//GEN-LAST:event_tabla_usuariosMouseClicked
+
+    private void btn_cancel_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_usuarioActionPerformed
+        limpiar_campos_usuario();
+    }//GEN-LAST:event_btn_cancel_usuarioActionPerformed
+
+    private void btn_usuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_usuarioActionPerformed
+        String accion = btn_usuario.getText();
+        if (accion.equalsIgnoreCase("MODIFICAR")) {
+            String id = text_id.getText();
+            String nombre = text_user.getText();
+            String password = text_password.getText();
+            if (!id.isEmpty() && !nombre.isEmpty() && !password.isEmpty()) {
+                String regex = "\\d+";
+                if (id.matches(regex)) {
+                    int idn = Integer.parseInt(id);
+                    ((Usuario) contenedor.usuarios.obtener(idn)).setName(nombre);
+                    ((Usuario) contenedor.usuarios.obtener(idn)).setPassword(password);
+                    limpiar_campos_usuario();
+                    construir_tabla_usuarios();
+                    JOptionPane.showMessageDialog(null, "Usuario modificado correctamente");
+                    escribir_doc("circular_usuarios", label_usuarios, contenedor.usuarios.escribir_doc("U"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Uno de los siguientes campos no es un numero (id)");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos en blanco");
+            }
+        } else {
+            String id = text_id.getText();
+            String nombre = text_user.getText();
+            String password = text_password.getText();
+            String tipo = combo_tipo.getSelectedItem().toString();
+            if (!id.isEmpty() && !nombre.isEmpty() && !password.isEmpty()) {
+                String regex = "\\d+";
+                if (id.matches(regex)) {
+                    int idn = Integer.parseInt(id);
+                    Usuario nue = ((Usuario) contenedor.usuarios.obtener(idn));
+                    if (nue == null) {
+                        Estudiante e = contenedor.estudiantes.buscar(idn);
+                        if (tipo.equalsIgnoreCase("colaborador") || tipo.equalsIgnoreCase("super")) {
+                            if (e == null) {
+                                int tip;
+                                if (tipo.equalsIgnoreCase("colaborador")) {
+                                    tip = 0;
+                                } else {
+                                    tip = 2;
+                                }
+                                Usuario nuevo = new Usuario(idn, nombre, password, tip);
+                                contenedor.usuarios.insertar2(idn, nuevo);
+                                limpiar_campos_usuario();
+                                construir_tabla_usuarios();
+                                JOptionPane.showMessageDialog(null, "Usuario " + tipo + " ingresado correctamente");
+                                escribir_doc("circular_usuarios", label_usuarios, contenedor.usuarios.escribir_doc("U"));
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Id reservado para un estudiante que aun no tiene usuario");
+                            }
+                        } else {
+                            if (e == null) {
+                                JOptionPane.showMessageDialog(null, "No existe el estudiante al que le quieres crear usuario");
+                            } else {
+                                int tip = 1;
+                                Usuario nuevo = new Usuario(idn, nombre, password, tip);
+                                contenedor.usuarios.insertar2(idn, nuevo);
+                                limpiar_campos_usuario();
+                                construir_tabla_usuarios();
+                                JOptionPane.showMessageDialog(null, "Usuario " + tipo + " ingresado correctamente");
+                                escribir_doc("circular_usuarios", label_usuarios, contenedor.usuarios.escribir_doc("U"));
+                            }
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya existe un usuario con ese id");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Uno de los siguientes campos no es un numero (id)");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos en blanco");
+            }
+        }
+    }//GEN-LAST:event_btn_usuarioActionPerformed
+
+    private void tabla_estudiantes2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_estudiantes2MouseClicked
+        int fila = tabla_estudiantes2.rowAtPoint(evt.getPoint());
+        int columna = tabla_estudiantes2.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_estudiantes2.getColumnCount() - 1) {
+            llave_seleccion = Integer.parseInt(tabla_estudiantes2.getModel().getValueAt(fila, 0).toString());
+            text_carnet_asignacion.setText(tabla_estudiantes2.getModel().getValueAt(fila, 1).toString());
+        }
+    }//GEN-LAST:event_tabla_estudiantes2MouseClicked
+
+    private void tabla_horariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_horariosMouseClicked
+        int fila = tabla_horarios.rowAtPoint(evt.getPoint());
+        int columna = tabla_horarios.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_horarios.getColumnCount() - 1) {
+            text_codigo_horario.setText(tabla_horarios.getModel().getValueAt(fila, 0).toString());
+        }
+    }//GEN-LAST:event_tabla_horariosMouseClicked
+
+    private void btn_asignarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignarActionPerformed
+        String zon = text_zona.getText();
+        String fin = text_final.getText();
+        String id = text_carnet_asignacion.getText();
+        String codigo = text_codigo_horario.getText();
+
+        if (!zon.isEmpty() && !fin.isEmpty() && !id.isEmpty() && !codigo.isEmpty()) {
+            String regex = "\\d+";
+            if (zon.matches(regex) && fin.matches(regex)) {
+                int idn = Integer.parseInt(id);
+                int zona = Integer.parseInt(zon);
+                int final_punteo = Integer.parseInt(fin);
+                int codigo2 = Integer.parseInt(codigo);
+                Circular.NodoCircular temporal = contenedor.horarios.obtener(codigo2).getAsignaciones().raiz;
+                if (temporal == null) {
+                    Asignacion as = new Asignacion(contenedor.asignaciones, contenedor.estudiantes.obtener_index(llave_seleccion), contenedor.horarios.obtener(codigo2), zona, final_punteo);
+                    contenedor.horarios.obtener(codigo2).getAsignaciones().insertar2(contenedor.asignaciones, as);
+                    contenedor.asignaciones++;
+                    JOptionPane.showMessageDialog(null, "Asignacion realizada con exito");
+                    text_zona.setText("");
+                    text_final.setText("");
+                    text_carnet_asignacion.setText("");
+                    text_codigo_horario.setText("");
+
+                    escribir_doc("b_asignacion", label_horario_asignacion, contenedor.horarios.escribir_doc());
+                } else {
+                    boolean existe = false;
+                    do {
+                        if (((Asignacion) temporal.getData()).getEstudiante().getCarnet() == idn) {
+                            existe = true;
+                            break;
+                        }
+                        temporal = temporal.getSiguiente();
+                    } while (temporal != contenedor.horarios.obtener(codigo2).getAsignaciones().raiz);
+
+                    if (!existe) {
+                        Asignacion as = new Asignacion(contenedor.asignaciones, contenedor.estudiantes.obtener_index(llave_seleccion), contenedor.horarios.obtener(codigo2), zona, final_punteo);
+                        contenedor.horarios.obtener(codigo2).getAsignaciones().insertar2(contenedor.asignaciones, as);
+                        contenedor.asignaciones++;
+                        JOptionPane.showMessageDialog(null, "Asignacion realizada con exito");
+                        text_zona.setText("");
+                        text_final.setText("");
+                        text_carnet_asignacion.setText("");
+                        text_codigo_horario.setText("");
+
+                        escribir_doc("b_asignacion", label_horario_asignacion, contenedor.horarios.escribir_doc());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya está asignado el estudiante a este horario");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Los siguientes datos tienen que ser obligatoriamente numeros (zona, final)");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
+        }
+    }//GEN-LAST:event_btn_asignarActionPerformed
 
     public void limpiar_campos_catedratico() {
         text_idc.setText("");
@@ -1562,6 +1947,16 @@ public class Principal extends javax.swing.JFrame {
         btn_curso.setText("AGREGAR");
     }
 
+    public void limpiar_campos_usuario() {
+        text_id.setText("");
+        text_id.setEnabled(true);
+        text_user.setText("");
+        text_password.setText("");
+        combo_tipo.setEnabled(true);
+        btn_cancel_usuario.setVisible(false);
+        btn_usuario.setText("AGREGAR");
+    }
+
     public void escribir_resultado(SimpleEnlazada resultado) {
         String texto = "";
         SimpleEnlazada.NodoSimple temp = resultado.getRaiz();
@@ -1570,6 +1965,7 @@ public class Principal extends javax.swing.JFrame {
             temp = temp.getSiguiente();
         }
         escribir_doc("b", label_horario, contenedor.horarios.crear_doc());
+        escribir_doc("b_asignacion", label_horario_asignacion, contenedor.horarios.escribir_doc());
         escribir_doc("hash", label_estudiantes, contenedor.estudiantes.escribir_doc());
         escribir_doc("circular_usuarios", label_usuarios, contenedor.usuarios.escribir_doc("U"));
         escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
@@ -1578,6 +1974,7 @@ public class Principal extends javax.swing.JFrame {
         textArea.setText(texto);
         panel_img.setVisible(false);
         cambiante.setVisible(true);
+        btn_cargar.setText("LOGIN");
     }
 
     /**
@@ -1607,6 +2004,7 @@ public class Principal extends javax.swing.JFrame {
          */
         Object[][] data = obtenerMatrizDatos(titulosList);
         construir_tabla_estudiantes(titulos, data);
+        construir_tabla_estudiantes2();
     }
 
     private void construir_tabla_edificios() {
@@ -1670,6 +2068,53 @@ public class Principal extends javax.swing.JFrame {
          */
         Object[][] data = obtener_datos_usuarios(titulosList);
         construir_tabla_usuarios(titulos, data);
+    }
+
+    private void construir_tabla_estudiantes2() {
+
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("LLAVE");
+        titulosList.add("CARNET");
+        titulosList.add("NOMBRE");
+        titulosList.add("DIRECCION");
+        titulosList.add("SELECCIONAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtenerMatrizDatos2(titulosList);
+        construir_tabla_estudiantes2(titulos, data);
+    }
+
+    private void construir_tabla_horarios() {
+
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("CODIGO");
+        titulosList.add("RANGO");
+        titulosList.add("DIA");
+        titulosList.add("CURSO");
+        titulosList.add("SALON");
+        titulosList.add("EDIFICIO");
+        titulosList.add("CATEDRATICO");
+        titulosList.add("SELECCIONAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtener_datos_horarios(titulosList);
+        construir_tabla_horarios(titulos, data);
     }
 
     private void construir_tabla_catedraticos() {
@@ -1762,6 +2207,27 @@ public class Principal extends javax.swing.JFrame {
         return informacion;
     }
 
+    private Object[][] obtenerMatrizDatos2(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        String informacion[][] = new String[listaPersonas.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+
+            informacion[x][0] = listaPersonas.get(x).getLlave() + "";
+            informacion[x][1] = listaPersonas.get(x).getCarnet() + "";
+            informacion[x][2] = listaPersonas.get(x).getNombre() + "";
+            informacion[x][3] = listaPersonas.get(x).getDireccion() + "";
+            //se asignan las plabras clave para que en la clase GestionCeldas se use para asignar el icono correspondiente
+            informacion[x][4] = "SELECCIONAR";
+        }
+
+        return informacion;
+    }
+
     private Object[][] obtener_datos_edificios(ArrayList<String> titulosList) {
 
         /*se crea la matriz donde las filas son dinamicas pues corresponde
@@ -1785,6 +2251,29 @@ public class Principal extends javax.swing.JFrame {
 
             informacion[x][0] = edis.get(x).getNombre() + "";
             informacion[x][1] = "ELIMINAR";
+        }
+        return informacion;
+    }
+
+    private Object[][] obtener_datos_horarios(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        ArrayList<Horario> edis = contenedor.horarios.listado_horarios(contenedor.horarios.getRaiz());
+        String informacion[][] = new String[edis.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+
+            informacion[x][0] = edis.get(x).getCodigo() + "";
+            informacion[x][1] = edis.get(x).getRango() + "";
+            informacion[x][2] = edis.get(x).getDia() + "";
+            informacion[x][3] = edis.get(x).getCurso().getNombre() + "";
+            informacion[x][4] = edis.get(x).getSalon().getNumero() + "";
+            informacion[x][5] = edis.get(x).getEdificio().getNombre() + "";
+            informacion[x][6] = edis.get(x).getCatedratico().getNombre() + "";
+            informacion[x][7] = "SELECCIONAR";
         }
         return informacion;
     }
@@ -1935,6 +2424,78 @@ public class Principal extends javax.swing.JFrame {
         jscroll_estudiantes.setViewportView(tabla_estudiantes);
     }
 
+    private void construir_tabla_estudiantes2(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        tabla_estudiantes2.setModel(modelo);
+
+        filasTabla = tabla_estudiantes2.getRowCount();
+        columnasTabla = tabla_estudiantes2.getColumnCount();
+
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        tabla_estudiantes2.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_estudiantes2.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_estudiantes2.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("texto"));
+        tabla_estudiantes2.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("texto"));
+        tabla_estudiantes2.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("icono"));
+
+        tabla_estudiantes2.getTableHeader().setReorderingAllowed(false);
+        tabla_estudiantes2.setRowHeight(30);//tamaño de las celdas
+        tabla_estudiantes2.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        tabla_estudiantes2.getColumnModel().getColumn(0).setPreferredWidth(70);//documento
+        tabla_estudiantes2.getColumnModel().getColumn(1).setPreferredWidth(130);//documento
+        tabla_estudiantes2.getColumnModel().getColumn(2).setPreferredWidth(380);//nombre
+        tabla_estudiantes2.getColumnModel().getColumn(3).setPreferredWidth(350);//direccion
+        tabla_estudiantes2.getColumnModel().getColumn(4).setPreferredWidth(100);//accion perfil
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = tabla_estudiantes2.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        tabla_estudiantes2.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_estudiantes2.setViewportView(tabla_estudiantes2);
+    }
+
+    private void construir_tabla_horarios(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        JTable agilizar = tabla_horarios;
+        agilizar.setModel(modelo);
+
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        agilizar.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("numerico"));
+        agilizar.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("texto"));
+        agilizar.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("texto"));
+        agilizar.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("texto"));
+        agilizar.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("numerico"));
+        agilizar.getColumnModel().getColumn(5).setCellRenderer(new GestionCeldas("texto"));
+        agilizar.getColumnModel().getColumn(6).setCellRenderer(new GestionCeldas("texto"));
+        agilizar.getColumnModel().getColumn(7).setCellRenderer(new GestionCeldas("icono"));
+
+        agilizar.getTableHeader().setReorderingAllowed(false);
+        agilizar.setRowHeight(30);//tamaño de las celdas
+        agilizar.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        agilizar.getColumnModel().getColumn(0).setPreferredWidth(50);//id
+        agilizar.getColumnModel().getColumn(1).setPreferredWidth(100);//username
+        agilizar.getColumnModel().getColumn(2).setPreferredWidth(100);//password
+        agilizar.getColumnModel().getColumn(3).setPreferredWidth(100);//password
+        agilizar.getColumnModel().getColumn(4).setPreferredWidth(100);//password
+        agilizar.getColumnModel().getColumn(5).setPreferredWidth(100);//password
+        agilizar.getColumnModel().getColumn(6).setPreferredWidth(100);//password
+        agilizar.getColumnModel().getColumn(7).setPreferredWidth(60);//accion eliminar
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = agilizar.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        agilizar.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_horarios.setViewportView(agilizar);
+    }
+
     private void construir_tabla_edificios(String[] titulos, Object[][] data) {
         modelo = new Modelo(titulos, data);
         //se asigna el modelo a la tabla
@@ -2013,7 +2574,7 @@ public class Principal extends javax.swing.JFrame {
         tabla_usuarios.setRowHeight(30);//tamaño de las celdas
         tabla_usuarios.setGridColor(new java.awt.Color(0, 0, 0));
         //Se define el tamaño de largo para cada columna y su contenido
-        tabla_usuarios.getColumnModel().getColumn(0).setPreferredWidth(100);//id
+        tabla_usuarios.getColumnModel().getColumn(0).setPreferredWidth(150);//id
         tabla_usuarios.getColumnModel().getColumn(1).setPreferredWidth(250);//username
         tabla_usuarios.getColumnModel().getColumn(2).setPreferredWidth(200);//password
         tabla_usuarios.getColumnModel().getColumn(3).setPreferredWidth(150);//tipo
@@ -2112,6 +2673,50 @@ public class Principal extends javax.swing.JFrame {
         }
     }
 
+    public void login() {
+        JPanel panel = new JPanel(new BorderLayout(5, 5));
+
+        JPanel label = new JPanel(new GridLayout(0, 1, 2, 2));
+        label.add(new JLabel("ID", SwingConstants.RIGHT));
+        label.add(new JLabel("PASSWORD", SwingConstants.RIGHT));
+        panel.add(label, BorderLayout.WEST);
+
+        JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+        JTextField username = new JTextField();
+        controls.add(username);
+        JPasswordField password = new JPasswordField();
+        controls.add(password);
+        panel.add(controls, BorderLayout.CENTER);
+
+        JOptionPane.showMessageDialog(this, panel, "Login", JOptionPane.QUESTION_MESSAGE);
+        String regex = "\\d+";
+        if (username.getText().matches(regex)) {
+            int id = Integer.parseInt(username.getText());
+            Usuario s = (Usuario) contenedor.usuarios.obtener(id);
+            if (s != null) {
+                if (s.getPassword().equals(new String(password.getPassword()))) {
+                    if (s.getTipo() == 0 || s.getTipo() == 2) {
+                        tab_global.setEnabledAt(1, true);
+                        tab_global.setEnabledAt(2, true);
+                        tab_global.setEnabledAt(3, true);
+                        btn_cargar.setText("CERRAR SESION");
+                    } else {
+                        tab_global.setEnabledAt(1, false);
+                        tab_global.setEnabledAt(2, false);
+                        tab_global.setEnabledAt(3, false);
+                        btn_cargar.setText("CERRAR SESION");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No coinciden las credenciales");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El ID que ingresaste no existe");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "El ID debe ser un numero");
+        }
+    }
+
     public void generar_grafica(String nombre, JLabel referencia) {
         String path2 = System.getProperty("user.dir");
 
@@ -2194,6 +2799,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_asignar;
     private javax.swing.JButton btn_cancel_catedratico;
     private javax.swing.JButton btn_cancel_curso;
     private javax.swing.JButton btn_cancel_estudiante;
@@ -2204,13 +2810,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_curso;
     private javax.swing.JButton btn_edificio;
     private javax.swing.JButton btn_estudiante;
+    private javax.swing.JButton btn_ingresar;
     private javax.swing.JButton btn_salon;
     private javax.swing.JButton btn_usuario;
     private javax.swing.JPanel cambiante;
     private javax.swing.JComboBox<String> combo_edificios;
+    private javax.swing.JComboBox<String> combo_tipo;
     private javax.swing.JTabbedPane crea_est;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2231,7 +2837,12 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2252,6 +2863,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2259,13 +2872,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane jscroll_catedraticos;
     private javax.swing.JScrollPane jscroll_cursos;
     private javax.swing.JScrollPane jscroll_edificios;
     private javax.swing.JScrollPane jscroll_estudiantes;
+    private javax.swing.JScrollPane jscroll_estudiantes2;
+    private javax.swing.JScrollPane jscroll_horarios;
     private javax.swing.JScrollPane jscroll_salones;
     private javax.swing.JScrollPane jscroll_usuarios;
     private javax.swing.JLabel label_catedraticos;
@@ -2273,22 +2887,29 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel label_edificios;
     private javax.swing.JLabel label_estudiantes;
     private javax.swing.JLabel label_horario;
+    private javax.swing.JLabel label_horario_asignacion;
     private javax.swing.JLabel label_usuarios;
     private javax.swing.JPanel panel_img;
     private javax.swing.JPanel panel_text;
+    private javax.swing.JTabbedPane tab_global;
     private javax.swing.JTable tabla_catedraticos;
     private javax.swing.JTable tabla_cursos;
     private javax.swing.JTable tabla_edificios;
     private javax.swing.JTable tabla_estudiantes;
+    private javax.swing.JTable tabla_estudiantes2;
+    private javax.swing.JTable tabla_horarios;
     private javax.swing.JTable tabla_salones;
     private javax.swing.JTable tabla_usuarios;
     private javax.swing.JTextField text_capacidad;
     private javax.swing.JTextField text_carnet;
+    private javax.swing.JTextField text_carnet_asignacion;
     private javax.swing.JTextField text_codigo;
+    private javax.swing.JTextField text_codigo_horario;
     private javax.swing.JTextField text_creditos;
     private javax.swing.JTextField text_direccion;
     private javax.swing.JTextField text_direccionc;
     private javax.swing.JTextField text_edificio;
+    private javax.swing.JTextField text_final;
     private javax.swing.JTextField text_id;
     private javax.swing.JTextField text_idc;
     private javax.swing.JTextField text_nombre;
@@ -2298,6 +2919,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField text_password;
     private javax.swing.JTextField text_semestre;
     private javax.swing.JTextField text_user;
+    private javax.swing.JTextField text_zona;
     private javax.swing.JTextField txt_archivo;
     // End of variables declaration//GEN-END:variables
 }

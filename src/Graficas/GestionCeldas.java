@@ -32,6 +32,7 @@ public class GestionCeldas extends DefaultTableCellRenderer {
     //iconos disponibles para ser mostrados en la etiqueta dependiendo de la columna que lo contenga
     private Image iconoEliminar = new ImageIcon(getClass().getResource("/Imagenes/082-cross-1.png")).getImage();
     private Image iconoModificar = new ImageIcon(getClass().getResource("/Imagenes/092-pen.png")).getImage();
+    private Image iconoSeleccionar = new ImageIcon(getClass().getResource("/Imagenes/092-pen.png")).getImage();
 
     public GestionCeldas() {
 
@@ -97,6 +98,8 @@ public class GestionCeldas extends DefaultTableCellRenderer {
                 label.setIcon(new ImageIcon(iconoModificar.getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
             } else if (String.valueOf(value).equals("ELIMINAR")) {
                 label.setIcon(new ImageIcon(iconoEliminar.getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+            } else if (String.valueOf(value).equals("SELECCIONAR")) {
+                label.setIcon(new ImageIcon(iconoSeleccionar.getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
             }
             label.setVerticalAlignment(JLabel.CENTER);
             label.setHorizontalAlignment(JLabel.CENTER);

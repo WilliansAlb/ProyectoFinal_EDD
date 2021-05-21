@@ -66,5 +66,8 @@ public class Asignacion {
         this.punteo_final = punteo_final;
     }
     
+    public String toString(){
+        return asignacion+"\\n"+estudiante.getCarnet()+"\\n"+codigo.getCodigo()+"\\nZona: "+zona+"\\nFinal: "+punteo_final;
+    }
     
 }

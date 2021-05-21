@@ -1,20 +1,23 @@
 digraph G{
-node [shape = box,height=.1];nodeCCU32[label = " 32\ncompiladore1\nSemestre: 10\nCreditos: 4 "];
+node [shape = box,height=.1];nodeCCU12[label = " 12\ncompiladores4\nSemestre: 3\nCreditos: 4 "];
+"nodeCCU12" -> "nodeCCU32"
+"nodeCCU12" -> "nodeCCU777"
+nodeCCU32[label = " 32\ncompiladore1\nSemestre: 10\nCreditos: 4 "];
 "nodeCCU32" -> "nodeCCU34"
-"nodeCCU32" -> "nodeCCU777"
+"nodeCCU32" -> "nodeCCU12"
 nodeCCU34[label = " 34\ncompiladores5\nSemestre: 3\nCreditos: 4 "];
-"nodeCCU34" -> "nodeCCU36"
+"nodeCCU34" -> "nodeCCU73"
 "nodeCCU34" -> "nodeCCU32"
-nodeCCU36[label = " 36\nun curso\nSemestre: 36\nCreditos: 36 "];
-"nodeCCU36" -> "nodeCCU73"
-"nodeCCU36" -> "nodeCCU34"
 nodeCCU73[label = " 73\ncompiladores6\nSemestre: 4\nCreditos: 4 "];
-"nodeCCU73" -> "nodeCCU236"
-"nodeCCU73" -> "nodeCCU36"
+"nodeCCU73" -> "nodeCCU111"
+"nodeCCU73" -> "nodeCCU34"
+nodeCCU111[label = " 111\ncompiladores3\nSemestre: 2\nCreditos: 4 "];
+"nodeCCU111" -> "nodeCCU236"
+"nodeCCU111" -> "nodeCCU73"
 nodeCCU236[label = " 236\ncompiladores2\nSemestre: 1\nCreditos: 4 "];
 "nodeCCU236" -> "nodeCCU777"
-"nodeCCU236" -> "nodeCCU73"
+"nodeCCU236" -> "nodeCCU111"
 nodeCCU777[label = " 777\ncompiladores1\nSemestre: 5\nCreditos: 4 "];
-"nodeCCU777" -> "nodeCCU32"
+"nodeCCU777" -> "nodeCCU12"
 "nodeCCU777" -> "nodeCCU236"
-{rank=same;"nodeCCU32"; "nodeCCU34"; "nodeCCU36"; "nodeCCU73"; "nodeCCU236"; "nodeCCU777"; }}
+{rank=same;"nodeCCU12"; "nodeCCU32"; "nodeCCU34"; "nodeCCU73"; "nodeCCU111"; "nodeCCU236"; "nodeCCU777"; }}

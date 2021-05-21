@@ -7,6 +7,7 @@ package Estructuras;
 
 import POJOS.Curso;
 import POJOS.Horario;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,7 +17,8 @@ public class B {
 
     NodoB raiz;
     int t;
-    public final String INICIO_GRAPH = "digraph G{\n"+"nodesep=1;\nrankdir=TB;\nnode[shape=record,width = 1, height = 1];\n";
+    public final String INICIO_GRAPH = "digraph G{\n" + "nodesep=1;\nrankdir=TB;\nnode[shape=record,width = 1, height = 1];\n";
+    public final String INICIO_GRAPH2 = "digraph G{\n" + "nodesep=1;\ncompound=true;\nrankdir=TB;\nnode[shape=record,width = 1, height = 1];\n";
 
     //Constructor
     public B(int t) {
@@ -599,9 +601,13 @@ public class B {
     public void mostrar_arbol() {
         print(raiz);
     }
-    
+
     public String crear_doc() {
-        return INICIO_GRAPH+graphviz(this.raiz)+"}";
+        return INICIO_GRAPH + graphviz(this.raiz) + "}";
+    }
+    
+    public String escribir_doc() {
+        return INICIO_GRAPH + graphviz_con(this.raiz) + "}";
     }
 
     //Print en preorder
@@ -609,7 +615,7 @@ public class B {
         n.imprimir();
         System.out.println("");
         //System.out.println(Arrays.toString(n.getKey()));
-        System.out.println("node"+n.llaves[0]+"[label =" + n.graphviz() + "];");
+        System.out.println("node" + n.llaves[0] + "[label =" + n.graphviz() + "];");
 
         //Si no es hoja
         if (!n.hoja) {
@@ -618,24 +624,73 @@ public class B {
             for (int j = 0; j <= n.n; j++) {
                 if (n.hijos[j] != null) {
                     print(n.hijos[j]);
-                    System.out.println("node"+n.llaves[0]+":f"+j+"->node"+n.hijos[j].llaves[0]+";");
+                    System.out.println("node" + n.llaves[0] + ":f" + j + "->node" + n.hijos[j].llaves[0] + ";");
                 }
             }
         }
     }
-    
+
     private String graphviz(NodoB n) {
         String retorno = "\n";
-        retorno += "node"+n.llaves[0]+"[label =" + n.graphviz() + "];\n";
-
+        retorno += "node" + n.llaves[0] + "[label =" + n.graphviz() + "];\n";
         //Si no es hoja
         if (!n.hoja) {
             //System.out.println("");
             //recorre los nodos para saber si tiene hijos
             for (int j = 0; j <= n.n; j++) {
                 if (n.hijos[j] != null) {
-                    retorno+= graphviz(n.hijos[j]);
-                    retorno+="node"+n.llaves[0]+":f"+j+"->node"+n.hijos[j].llaves[0]+";\n";
+                    retorno += graphviz(n.hijos[j]);
+                    retorno += "node" + n.llaves[0] + ":f" + j + "->node" + n.hijos[j].llaves[0] + ";\n";
+                }
+            }
+        }
+        return retorno;
+    }
+
+    public String graphviz_con(NodoB n) {
+        String retorno = "\n";
+        retorno += "node" + n.llaves[0] + "[label =" + n.graphviz() + "];\n";
+        for (int i = 0; i < n.n; i++) {
+            Horario temp = (Horario) n.getData()[i];
+            if (temp != null) {
+                String al = "subgraph cluster"+n.llaves[i]+"{";
+                Circular cir = temp.getAsignaciones();
+                al += cir.estructura_graphviz_asignacion("A");
+                al += "}";
+                al += "node"+n.llaves[0]+":n"+n.llaves[i]+" -> nodeCA"+cir.raiz.getId()+";";
+                retorno += al;
+            }
+        }
+        if (!n.hoja) {
+            //System.out.println("");
+            //recorre los nodos para saber si tiene hijos
+            for (int j = 0; j <= n.n; j++) {
+                if (n.hijos[j] != null) {
+                    retorno += graphviz_con(n.hijos[j]);
+                    retorno += "node" + n.llaves[0] + ":f" + j + "->node" + n.hijos[j].llaves[0] + ";\n";
+                }
+            }
+        }
+        return retorno;
+    }
+    
+    public ArrayList<Horario> listado_horarios(NodoB n) {
+        ArrayList<Horario> retorno = new ArrayList<>();
+        for (int i = 0; i < n.n; i++) {
+            Horario temp = (Horario) n.getData()[i];
+            if (temp != null) {
+                retorno.add(temp);
+            }
+        }
+        if (!n.hoja) {
+            //System.out.println("");
+            //recorre los nodos para saber si tiene hijos
+            for (int j = 0; j <= n.n; j++) {
+                if (n.hijos[j] != null) {
+                    ArrayList<Horario> ob = listado_horarios(n.hijos[j]);
+                    if (!ob.isEmpty()){
+                        retorno.addAll(ob);
+                    }
                 }
             }
         }
@@ -699,12 +754,20 @@ public class B {
                 }
                 retorno += "<f" + i + ">";
                 if (i < n - 1) {
-                    retorno += "| " + data[i].toString();
+                    retorno += "| <n" + llaves[i] + ">" + data[i].toString();
                 } else {
-                    retorno += "| " + data[i].toString()+ " |<f" + (i + 1) + ">";
+                    retorno += "| <n" + llaves[i] + ">" + data[i].toString() + " |<f" + (i + 1) + ">";
                 }
             }
             retorno += "\"";
+            return retorno;
+        }
+
+        public SimpleEnlazada datos() {
+            SimpleEnlazada retorno = new SimpleEnlazada();
+            for (int i = 0; i < n; i++) {
+                retorno.ingresar(llaves[i], (Horario) data[i]);
+            }
             return retorno;
         }
 
