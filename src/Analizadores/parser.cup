@@ -38,7 +38,7 @@ terminal USUARIO,ESTUDIANTE,CATEDRATICO,EDIFICIO,SALON,CURSO,HORARIO,ASIGNAR,SUP
     PARENTESISC,PUNTOC,COMA,COMILLAS,ID,STRING;
 
 non terminal inicio, agregar, estudiante,catedratico,usuario,edificio,salon,curso,horario,asignacion;
-non terminal String string, tipo;
+non terminal String string, tipo, pos_string;
 start with inicio;
 
 inicio::=
@@ -88,7 +88,7 @@ curso::=
 ;
 
 horario::=
-    HORARIO PARENTESISA NUMERO:e1 COMA string:e2 COMA string:e3 COMA NUMERO:e4 COMA NUMERO:e5 COMA string:e6 COMA NUMERO:e7 PARENTESISC PUNTOC
+    HORARIO PARENTESISA NUMERO:e1 COMA string:e2 COMA string:e3 COMA NUMERO:e4 COMA NUMERO:e5 COMA pos_string:e6 COMA NUMERO:e7 PARENTESISC PUNTOC
     {: con.insertar_horario(Integer.parseInt(e1.toString()), e2, e3, Integer.parseInt(e4.toString()), Integer.parseInt(e5.toString()), e6, Integer.parseInt(e7.toString())); :}
 ;
 
@@ -105,4 +105,9 @@ tipo::=
 
 string::=
     COMILLAS STRING:e1 COMILLAS {: RESULT = e1.toString(); :}
+;
+
+pos_string::=
+    string:e1 {: RESULT = e1; :}
+    | ID:e1 {: RESULT = e1.toString(); :}
 ;

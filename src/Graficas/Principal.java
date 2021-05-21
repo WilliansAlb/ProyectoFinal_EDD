@@ -38,6 +38,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
 /**
@@ -89,6 +90,10 @@ public class Principal extends javax.swing.JFrame {
         tab_global.setEnabledAt(1, false);
         tab_global.setEnabledAt(2, false);
         tab_global.setEnabledAt(3, false);
+        tab_global.setEnabledAt(4, false);
+        tab_global.setEnabledAt(5, false);
+        tab_global.setEnabledAt(6, false);
+        tab_global.setEnabledAt(7, false);
     }
 
     /**
@@ -222,6 +227,34 @@ public class Principal extends javax.swing.JFrame {
         label_cursos = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         label_horario_asignacion = new javax.swing.JLabel();
+        jPanel22 = new javax.swing.JPanel();
+        jLabel34 = new javax.swing.JLabel();
+        text_salon_curso = new javax.swing.JTextField();
+        btn_cursos_salon = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_cursos_salon = new javax.swing.JTable();
+        jPanel25 = new javax.swing.JPanel();
+        jLabel33 = new javax.swing.JLabel();
+        text_semestre_buscar = new javax.swing.JTextField();
+        btn_ver = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_aprobados = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabla_reporte1 = new javax.swing.JTable();
+        jPanel26 = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        text_curso_buscado = new javax.swing.JTextField();
+        btn_asignados = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabla_asignados = new javax.swing.JTable();
+        jPanel27 = new javax.swing.JPanel();
+        jPanel28 = new javax.swing.JPanel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        text_carnet_asignados = new javax.swing.JTextField();
+        btn_carnet_asignados = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tabla_cursos_asignados = new javax.swing.JTable();
 
         jTextField1.setText("jTextField1");
 
@@ -255,7 +288,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panel_textLayout.setVerticalGroup(
             panel_textLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 108, Short.MAX_VALUE)
+            .addGap(0, 121, Short.MAX_VALUE)
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -306,9 +339,9 @@ public class Principal extends javax.swing.JFrame {
         );
         panel_imgLayout.setVerticalGroup(
             panel_imgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_imgLayout.createSequentialGroup()
+            .addGroup(panel_imgLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -460,7 +493,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(jscroll_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -503,7 +536,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscroll_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jscroll_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9)
@@ -524,7 +557,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(text_edificio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_edificio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                .addComponent(jscroll_edificios)
                 .addContainerGap())
         );
 
@@ -585,7 +618,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_capacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                        .addComponent(text_capacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE))
                     .addGroup(jPanel19Layout.createSequentialGroup()
                         .addComponent(btn_salon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -629,7 +662,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_salones, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addComponent(jscroll_salones, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -729,7 +762,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -739,7 +772,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -839,7 +872,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscroll_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jscroll_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 917, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -849,7 +882,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(jscroll_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -913,7 +946,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(text_nombre_curso, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                        .addComponent(text_nombre_curso, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -967,7 +1000,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(jscroll_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 382, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1098,7 +1131,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscroll_horarios, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                    .addComponent(jscroll_horarios, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
                     .addComponent(jscroll_estudiantes2)
                     .addComponent(jPanel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -1109,9 +1142,9 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_estudiantes2, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addComponent(jscroll_estudiantes2, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscroll_horarios, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addComponent(jscroll_horarios, javax.swing.GroupLayout.DEFAULT_SIZE, 236, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1125,14 +1158,14 @@ public class Principal extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_horario, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_horario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_horario, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_horario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1146,14 +1179,14 @@ public class Principal extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
+            .addGroup(jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1167,14 +1200,14 @@ public class Principal extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1188,14 +1221,14 @@ public class Principal extends javax.swing.JFrame {
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1209,14 +1242,14 @@ public class Principal extends javax.swing.JFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1228,16 +1261,16 @@ public class Principal extends javax.swing.JFrame {
         jPanel20.setLayout(jPanel20Layout);
         jPanel20Layout.setHorizontalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel20Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel20Layout.setVerticalGroup(
             jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel20Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1249,14 +1282,14 @@ public class Principal extends javax.swing.JFrame {
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_horario_asignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addComponent(label_horario_asignacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel23Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_horario_asignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addComponent(label_horario_asignacion, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1266,14 +1299,257 @@ public class Principal extends javax.swing.JFrame {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2)
+                .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0))
         );
 
         tab_global.addTab("MOSTRAR", jPanel12);
+
+        jLabel34.setText("SALON:");
+
+        btn_cursos_salon.setText("VER");
+        btn_cursos_salon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cursos_salonActionPerformed(evt);
+            }
+        });
+
+        tabla_cursos_salon.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "EDIFICIO", "SALON", "CURSO", "HORARIO"
+            }
+        ));
+        jScrollPane3.setViewportView(tabla_cursos_salon);
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
+                    .addGroup(jPanel22Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_salon_curso)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cursos_salon)))
+                .addContainerGap())
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel34)
+                    .addComponent(text_salon_curso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_cursos_salon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tab_global.addTab("CURSOS EN SALON", jPanel22);
+
+        jLabel33.setText("SEMESTRE:");
+
+        btn_ver.setText("VER");
+        btn_ver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_verActionPerformed(evt);
+            }
+        });
+
+        tabla_aprobados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null}
+            },
+            new String [] {
+                "# APROBADOS", "# REPROBADOS"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla_aprobados);
+
+        tabla_reporte1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CARNET", "CURSO", "HORARIO", "SEMESTRE", "PUNTEO FINAL", "ESTADO"
+            }
+        ));
+        jScrollPane2.setViewportView(tabla_reporte1);
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(jPanel25Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_semestre_buscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_ver))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel25Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(text_semestre_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ver))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
+        );
+
+        tab_global.addTab("APROBADOS/REPROBADOS", jPanel25);
+
+        jLabel35.setText("CURSO:");
+
+        btn_asignados.setText("VER");
+        btn_asignados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_asignadosActionPerformed(evt);
+            }
+        });
+
+        tabla_asignados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CARNET", "NOMBRE", "CURSO", "CODIGO CURSO", "HORARIO", "CODIGO HORARIO"
+            }
+        ));
+        jScrollPane4.setViewportView(tabla_asignados);
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addComponent(jLabel35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_curso_buscado)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_asignados)))
+                .addContainerGap())
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel26Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel35)
+                    .addComponent(text_curso_buscado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_asignados))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        tab_global.addTab("ASIGNADOS A CURSO", jPanel26);
+
+        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel36.setText("VER LOS CURSOS ASIGNADOS A ESTUDIANTE POR CARNET");
+
+        jLabel37.setText("CARNET:");
+
+        btn_carnet_asignados.setText("VER");
+        btn_carnet_asignados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_carnet_asignadosActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
+        jPanel28.setLayout(jPanel28Layout);
+        jPanel28Layout.setHorizontalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel28Layout.createSequentialGroup()
+                        .addComponent(jLabel37)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_carnet_asignados)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_carnet_asignados)))
+                .addContainerGap())
+        );
+        jPanel28Layout.setVerticalGroup(
+            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel28Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37)
+                    .addComponent(text_carnet_asignados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_carnet_asignados))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabla_cursos_asignados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CURSO", "NOMBRE", "HORARIO", "CODIGO HORARIO", "ZONA", "FINAL"
+            }
+        ));
+        jScrollPane5.setViewportView(tabla_cursos_asignados);
+
+        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
+        jPanel27.setLayout(jPanel27Layout);
+        jPanel27Layout.setHorizontalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 919, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel27Layout.setVerticalGroup(
+            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel27Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
+        );
+
+        tab_global.addTab("CURSOS ASIGNADOS", jPanel27);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1321,6 +1597,10 @@ public class Principal extends javax.swing.JFrame {
             tab_global.setEnabledAt(1, false);
             tab_global.setEnabledAt(2, false);
             tab_global.setEnabledAt(3, false);
+            tab_global.setEnabledAt(4, false);
+            tab_global.setEnabledAt(5, false);
+            tab_global.setEnabledAt(6, false);
+            tab_global.setEnabledAt(7, false);
             btn_cargar.setText("LOGIN");
         } else {
             cambiante.setVisible(false);
@@ -1927,6 +2207,168 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
         }
     }//GEN-LAST:event_btn_asignarActionPerformed
+
+    private void btn_verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verActionPerformed
+        String semestre = text_semestre_buscar.getText();
+        int aprobados = 0;
+        int reprobados = 0;
+        limpiar_tabla(tabla_reporte1);
+        if (!semestre.isEmpty()) {
+            String regex = "\\d+";
+            if (semestre.matches(regex)) {
+                int semes = Integer.parseInt(semestre);
+                ArrayList<Horario> horarios = contenedor.horarios.listado_horarios(contenedor.horarios.getRaiz());
+                for (int i = 0; i < horarios.size(); i++) {
+                    if (horarios.get(i).getCurso().getSemestre() == semes) {
+                        Circular.NodoCircular n = horarios.get(i).getAsignaciones().raiz;
+                        if (n != null) {
+                            do {
+                                if (n.getData() instanceof Asignacion) {
+                                    Asignacion t = (Asignacion) n.getData();
+                                    if ((t.getPunteo_final() + t.getZona()) >= 61) {
+                                        DefaultTableModel mo = (DefaultTableModel) tabla_reporte1.getModel();
+                                        mo.addRow(new Object[]{t.getEstudiante().getCarnet(), horarios.get(i).getCurso().getCodigo(), horarios.get(i).getCodigo(), semes, t.getPunteo_final() + t.getZona(), "aprobado"});
+                                        aprobados++;
+                                    } else {
+                                        DefaultTableModel mo = (DefaultTableModel) tabla_reporte1.getModel();
+                                        mo.addRow(new Object[]{t.getEstudiante().getCarnet(), horarios.get(i).getCurso().getCodigo(), horarios.get(i).getCodigo(), semes, t.getPunteo_final() + t.getZona(), "reprobado"});
+                                        reprobados++;
+                                    }
+                                }
+                                n = n.getSiguiente();
+                            } while (n != horarios.get(i).getAsignaciones().raiz);
+                        }
+                    }
+                }
+                tabla_aprobados.setValueAt(aprobados, 0, 0);
+                tabla_aprobados.setValueAt(reprobados, 0, 1);
+            } else {
+                JOptionPane.showMessageDialog(null, "El semestre debe ser un valor numerico");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa primero el semestre que quieres ver");
+        }
+    }//GEN-LAST:event_btn_verActionPerformed
+
+    private void btn_cursos_salonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cursos_salonActionPerformed
+        String salon = text_salon_curso.getText();
+        limpiar_tabla(tabla_cursos_salon);
+        if (!salon.isEmpty()) {
+            String regex = "\\d+";
+            if (salon.matches(regex)) {
+                int salon_e = Integer.parseInt(salon);
+                SimpleEnlazada horarios = contenedor.horarios.listado();
+                if (horarios.getRaiz() != null) {
+                    SimpleEnlazada.NodoSimple it = horarios.getRaiz();
+                    while (it != null) {
+                        Horario tem = (Horario) it.getData();
+                        if (tem != null && tem.getSalon().getNumero() == salon_e) {
+                            DefaultTableModel mo = (DefaultTableModel) tabla_cursos_salon.getModel();
+                            mo.addRow(new Object[]{tem.getSalon().getEdificio().getNombre(), tem.getSalon().getNumero(), tem.getCurso().getNombre(), tem.getCodigo()});
+                        }
+                        it = it.getSiguiente();
+                    }
+                }
+                if (tabla_cursos_salon.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se encontro nada que coincidiera con lo solicitado");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El semestre debe ser un valor numerico");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa primero el semestre que quieres ver");
+        }
+    }//GEN-LAST:event_btn_cursos_salonActionPerformed
+
+    private void btn_asignadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_asignadosActionPerformed
+        String curso = text_curso_buscado.getText();
+        limpiar_tabla(tabla_asignados);
+        if (!curso.isEmpty()) {
+            String regex = "\\d+";
+            if (curso.matches(regex)) {
+                int curso_e = Integer.parseInt(curso);
+                SimpleEnlazada horarios = contenedor.horarios.listado();
+                if (horarios.getRaiz() != null) {
+                    SimpleEnlazada.NodoSimple it = horarios.getRaiz();
+                    while (it != null) {
+                        Horario tem = (Horario) it.getData();
+                        if (tem != null && tem.getCurso().getCodigo() == curso_e) {
+                            Circular.NodoCircular n = tem.getAsignaciones().raiz;
+                            if (n != null) {
+                                do {
+                                    if (n.getData() instanceof Asignacion) {
+                                        Asignacion t = (Asignacion) n.getData();
+                                        DefaultTableModel mo = (DefaultTableModel) tabla_asignados.getModel();
+                                        mo.addRow(new Object[]{t.getEstudiante().getCarnet(), t.getEstudiante().getNombre(), tem.getCurso().getNombre(), tem.getCurso().getCodigo(), tem.getRango(), tem.getCodigo()});
+                                    }
+                                    n = n.getSiguiente();
+                                } while (n != tem.getAsignaciones().raiz);
+                            }
+                        }
+                        it = it.getSiguiente();
+                    }
+                }
+                if (tabla_asignados.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se encontro nada que coincidiera con lo solicitado");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El curso debe ser un valor numerico");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa primero el curso que quieres ver");
+        }
+    }//GEN-LAST:event_btn_asignadosActionPerformed
+
+    private void btn_carnet_asignadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_carnet_asignadosActionPerformed
+        String carnet = text_carnet_asignados.getText();
+        limpiar_tabla(tabla_cursos_asignados);
+        if (!carnet.isEmpty()) {
+            String regex = "\\d+";
+            if (carnet.matches(regex)) {
+                int carnet_e = Integer.parseInt(carnet);
+                SimpleEnlazada horarios = contenedor.horarios.listado();
+                if (horarios.getRaiz() != null) {
+                    SimpleEnlazada.NodoSimple it = horarios.getRaiz();
+                    while (it != null) {
+                        Horario tem = (Horario) it.getData();
+                        if (tem != null) {
+                            Circular.NodoCircular n = tem.getAsignaciones().raiz;
+                            if (n != null) {
+                                do {
+                                    if (n.getData() instanceof Asignacion) {
+                                        Asignacion t = (Asignacion) n.getData();
+                                        if (t != null && t.getEstudiante().getCarnet() == carnet_e) {
+                                            DefaultTableModel mo = (DefaultTableModel) tabla_cursos_asignados.getModel();
+                                            mo.addRow(new Object[]{tem.getCurso().getCodigo(), tem.getCurso().getNombre(), tem.getRango(), tem.getCodigo(), t.getZona(), t.getPunteo_final()});
+                                        }
+                                    }
+                                    n = n.getSiguiente();
+                                } while (n != tem.getAsignaciones().raiz);
+                            }
+                        }
+                        it = it.getSiguiente();
+                    }
+                }
+                if (tabla_cursos_asignados.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "No se encontro ningun dato que coincida con lo solicitado");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "El carnet debe ser un valor numerico");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa primero el carnet que quieres ver");
+        }
+    }//GEN-LAST:event_btn_carnet_asignadosActionPerformed
+
+    public void limpiar_tabla(JTable jt) {
+        DefaultTableModel modelo = (DefaultTableModel) jt.getModel();
+        int filas = modelo.getRowCount();
+        if (filas != 0) {
+            for (int i = 0; i < filas; i++) {
+                modelo.removeRow(0);
+            }
+        }
+    }
 
     public void limpiar_campos_catedratico() {
         text_idc.setText("");
@@ -2699,12 +3141,46 @@ public class Principal extends javax.swing.JFrame {
                         tab_global.setEnabledAt(1, true);
                         tab_global.setEnabledAt(2, true);
                         tab_global.setEnabledAt(3, true);
+                        tab_global.setEnabledAt(4, true);
+                        tab_global.setEnabledAt(5, true);
+                        tab_global.setEnabledAt(6, true);
+                        tab_global.setEnabledAt(7, true);
                         btn_cargar.setText("CERRAR SESION");
+                        jPanel28.setVisible(true);
                     } else {
                         tab_global.setEnabledAt(1, false);
                         tab_global.setEnabledAt(2, false);
                         tab_global.setEnabledAt(3, false);
+                        tab_global.setEnabledAt(4, false);
+                        tab_global.setEnabledAt(5, false);
+                        tab_global.setEnabledAt(6, false);
+                        tab_global.setEnabledAt(7, true);
                         btn_cargar.setText("CERRAR SESION");
+                        jPanel28.setVisible(false);
+                        limpiar_tabla(tabla_cursos_asignados);
+                        SimpleEnlazada horarios = contenedor.horarios.listado();
+                        if (horarios.getRaiz() != null) {
+                            SimpleEnlazada.NodoSimple it = horarios.getRaiz();
+                            while (it != null) {
+                                Horario tem = (Horario) it.getData();
+                                if (tem != null) {
+                                    Circular.NodoCircular n = tem.getAsignaciones().raiz;
+                                    if (n != null) {
+                                        do {
+                                            if (n.getData() instanceof Asignacion) {
+                                                Asignacion t = (Asignacion) n.getData();
+                                                if (t != null && t.getEstudiante().getCarnet() == id) {
+                                                    DefaultTableModel mo = (DefaultTableModel) tabla_cursos_asignados.getModel();
+                                                    mo.addRow(new Object[]{tem.getCurso().getCodigo(), tem.getCurso().getNombre(), tem.getRango(), tem.getCodigo(), t.getZona(), t.getPunteo_final()});
+                                                }
+                                            }
+                                            n = n.getSiguiente();
+                                        } while (n != tem.getAsignaciones().raiz);
+                                    }
+                                }
+                                it = it.getSiguiente();
+                            }
+                        }
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "No coinciden las credenciales");
@@ -2799,6 +3275,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_asignados;
     private javax.swing.JButton btn_asignar;
     private javax.swing.JButton btn_cancel_catedratico;
     private javax.swing.JButton btn_cancel_curso;
@@ -2806,13 +3283,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_cancel_salon;
     private javax.swing.JButton btn_cancel_usuario;
     private javax.swing.JButton btn_cargar;
+    private javax.swing.JButton btn_carnet_asignados;
     private javax.swing.JButton btn_catedratico;
     private javax.swing.JButton btn_curso;
+    private javax.swing.JButton btn_cursos_salon;
     private javax.swing.JButton btn_edificio;
     private javax.swing.JButton btn_estudiante;
     private javax.swing.JButton btn_ingresar;
     private javax.swing.JButton btn_salon;
     private javax.swing.JButton btn_usuario;
+    private javax.swing.JButton btn_ver;
     private javax.swing.JPanel cambiante;
     private javax.swing.JComboBox<String> combo_edificios;
     private javax.swing.JComboBox<String> combo_tipo;
@@ -2843,6 +3323,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -2863,8 +3348,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
     private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
+    private javax.swing.JPanel jPanel27;
+    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -2872,6 +3362,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JScrollPane jscroll_catedraticos;
@@ -2892,20 +3387,27 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel panel_img;
     private javax.swing.JPanel panel_text;
     private javax.swing.JTabbedPane tab_global;
+    private javax.swing.JTable tabla_aprobados;
+    private javax.swing.JTable tabla_asignados;
     private javax.swing.JTable tabla_catedraticos;
     private javax.swing.JTable tabla_cursos;
+    private javax.swing.JTable tabla_cursos_asignados;
+    private javax.swing.JTable tabla_cursos_salon;
     private javax.swing.JTable tabla_edificios;
     private javax.swing.JTable tabla_estudiantes;
     private javax.swing.JTable tabla_estudiantes2;
     private javax.swing.JTable tabla_horarios;
+    private javax.swing.JTable tabla_reporte1;
     private javax.swing.JTable tabla_salones;
     private javax.swing.JTable tabla_usuarios;
     private javax.swing.JTextField text_capacidad;
     private javax.swing.JTextField text_carnet;
     private javax.swing.JTextField text_carnet_asignacion;
+    private javax.swing.JTextField text_carnet_asignados;
     private javax.swing.JTextField text_codigo;
     private javax.swing.JTextField text_codigo_horario;
     private javax.swing.JTextField text_creditos;
+    private javax.swing.JTextField text_curso_buscado;
     private javax.swing.JTextField text_direccion;
     private javax.swing.JTextField text_direccionc;
     private javax.swing.JTextField text_edificio;
@@ -2917,7 +3419,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField text_nombrec;
     private javax.swing.JTextField text_numero;
     private javax.swing.JTextField text_password;
+    private javax.swing.JTextField text_salon_curso;
     private javax.swing.JTextField text_semestre;
+    private javax.swing.JTextField text_semestre_buscar;
     private javax.swing.JTextField text_user;
     private javax.swing.JTextField text_zona;
     private javax.swing.JTextField txt_archivo;

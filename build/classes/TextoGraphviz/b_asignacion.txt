@@ -10,11 +10,8 @@ subgraph cluster3{nodeCA2[label = " 2\n201830221\n3\nZona: 36\nFinal: 25 "];
 }node3:n3 -> nodeCA2;
 node1[label ="<f0>| <n1>1\n8:50am-9:40am\nlunes\n12\nT3\n28\nProf10 | <f1>| <n2>2\n9:40am-10:30am\nlunes\n32\nT4\n18\nProf1 |<f2>"];
 subgraph cluster1{nodeCA3[label = " 3\n201830222\n1\nZona: 36\nFinal: 25 "];
-"nodeCA3" -> "nodeCA8"
-"nodeCA3" -> "nodeCA8"
-nodeCA8[label = " 8\n201820221\n1\nZona: 36\nFinal: 30 "];
-"nodeCA8" -> "nodeCA3"
-"nodeCA8" -> "nodeCA3"
+"nodeCA3" -> "nodeCA3"
+"nodeCA3" -> "nodeCA3"
 }node1:n1 -> nodeCA3;subgraph cluster2{nodeCA4[label = " 4\n201830223\n2\nZona: 36\nFinal: 25 "];
 "nodeCA4" -> "nodeCA4"
 "nodeCA4" -> "nodeCA4"
@@ -28,8 +25,11 @@ subgraph cluster21{nodeCA5[label = " 5\n201830224\n21\nZona: 36\nFinal: 25 "];
 "nodeCA7" -> "nodeCA7"
 "nodeCA7" -> "nodeCA7"
 }node21:n23 -> nodeCA7;subgraph cluster31{nodeCA1[label = " 1\n464198670\n31\nZona: 36\nFinal: 25 "];
-"nodeCA1" -> "nodeCA1"
-"nodeCA1" -> "nodeCA1"
+"nodeCA1" -> "nodeCA8"
+"nodeCA1" -> "nodeCA8"
+nodeCA8[label = " 8\n201811221\n31\nZona: 35\nFinal: 40 "];
+"nodeCA8" -> "nodeCA1"
+"nodeCA8" -> "nodeCA1"
 }node21:n31 -> nodeCA1;subgraph cluster100{nodeCA6[label = " 6\n201830225\n100\nZona: 36\nFinal: 25 "];
 "nodeCA6" -> "nodeCA6"
 "nodeCA6" -> "nodeCA6"

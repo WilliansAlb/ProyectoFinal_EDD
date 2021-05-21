@@ -674,6 +674,15 @@ public class B {
         return retorno;
     }
     
+    public SimpleEnlazada listado(){
+        ArrayList<Horario> retorno = listado_horarios(raiz);
+        SimpleEnlazada lista = new SimpleEnlazada();
+        for (int i = 0; i < retorno.size(); i++) {
+            lista.ingresar(i, retorno.get(i));
+        }
+        return lista;
+    }
+    
     public ArrayList<Horario> listado_horarios(NodoB n) {
         ArrayList<Horario> retorno = new ArrayList<>();
         for (int i = 0; i < n.n; i++) {
