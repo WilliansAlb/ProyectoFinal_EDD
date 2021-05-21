@@ -5,15 +5,18 @@
  */
 package Estructuras;
 
+import POJOS.Edificio;
+
 /**
  *
  * @author willi
  * @param <T>
  */
 public class Circular<T> {
+
     static final String INICIO_GRAFICO = "digraph G{\n"
-            + "node [shape = record,height=.1];";
-    private NodoCircular<T> raiz;
+            + "node [shape = box,height=.1];";
+    public NodoCircular<T> raiz;
 
     public Circular() {
         raiz = null;
@@ -140,10 +143,10 @@ public class Circular<T> {
         }
     }
 
-    public void eliminar(long id) {
+    public boolean eliminar(long id) {
         NodoCircular<T> reco = raiz;
         if (raiz == null) {
-            System.out.println("No hay datos");
+            return false;
         } else {
             boolean encontrado = false;
             do {
@@ -156,14 +159,11 @@ public class Circular<T> {
             } while (reco != raiz);
             if (encontrado) {
                 NodoCircular<T> aux = reco.getAnterior();
-                NodoCircular<T> temp = reco.getSiguiente();
                 if (reco != raiz) {
                     if (reco.getSiguiente() == raiz) {
-                        System.out.println("entra if1" + reco.getId());
                         aux.setSiguiente(raiz);
                         raiz.setAnterior(aux);
                     } else {
-                        System.out.println("entra if2" + reco.getId());
                         reco.getAnterior().setSiguiente(reco.getSiguiente());
                         reco.getSiguiente().setAnterior(reco.getAnterior());
                     }
@@ -171,22 +171,22 @@ public class Circular<T> {
                     if (reco.getSiguiente() == raiz) {
                         raiz = null;
                     } else {
-                        System.out.println("entra acá");
                         aux.setSiguiente(reco.getSiguiente());
                         reco.getSiguiente().setAnterior(aux);
                         raiz = reco.getSiguiente();
                     }
                 }
+                return true;
             } else {
-                System.out.println("No hay datos donde buscar");
+                return false;
             }
         }
     }
-    
+
     public T obtener(long id) {
         NodoCircular<T> reco = raiz;
         do {
-            if (reco.getId() == id){
+            if (reco.getId() == id) {
                 return reco.getData();
             }
             reco = reco.getSiguiente();
@@ -202,24 +202,98 @@ public class Circular<T> {
             reco = reco.getSiguiente();
         } while (reco != raiz);
     }
-    
-    public String documento(){
-        return INICIO_GRAFICO+estructura_graphviz()+"}";
+
+    public String escribir_doc(String tipo) {
+        if (tipo.equalsIgnoreCase("U")) {
+            return INICIO_GRAFICO + estructura_graphviz(tipo) + "}";
+        } else if (tipo.equalsIgnoreCase("E")) {
+            return INICIO_GRAFICO + estructura_graphviz_edificio(tipo)+"}";
+        } else {
+            return INICIO_GRAFICO + estructura_graphviz(tipo) + "}";
+        }
     }
-    
-    public String estructura_graphviz(){
+
+    public String estructura_graphviz(String tipo) {
         NodoCircular<T> reco = raiz;
         String retorno = "";
+        String rank = "{rank=same;";
         do {
-            retorno += "nodeCIR" + reco.getId() + "[label = \" " + reco.getData().toString() + " \"];\n";
-            retorno += "\"nodeCIR" + reco.getId() + "\" -> \"nodeCIR" + reco.getSiguiente().getId() + "\"\n";
-            retorno += "\"nodeCIR" + reco.getId() + "\" -> \"nodeCIR" + reco.getAnterior().getId() + "\"\n";
+            retorno += "nodeC" + tipo + reco.getId() + "[label = \" " + reco.getData().toString() + " \"];\n";
+            retorno += "\"nodeC" + tipo + reco.getId() + "\" -> \"nodeC" + tipo + reco.getSiguiente().getId() + "\"\n";
+            retorno += "\"nodeC" + tipo + reco.getId() + "\" -> \"nodeC" + tipo + reco.getAnterior().getId() + "\"\n";
+            rank += "\"nodeC" + tipo + reco.getId() + "\"; ";
             reco = reco.getSiguiente();
         } while (reco != raiz);
+        retorno += rank+"}";
+        return retorno;
+    }
+    
+    public String estructura_graphviz_edificio(String tipo) {
+        NodoCircular<T> reco = raiz;
+        String retorno = "";
+        String rank = "{rank=same;";
+        do {
+            retorno += "nodeC" + tipo + reco.getId() + "[label = \" " + reco.getData().toString() + " \"];\n";
+            retorno += "\"nodeC" + tipo + reco.getId() + "\" -> \"nodeC" + tipo + reco.getSiguiente().getId() + "\"\n";
+            retorno += "\"nodeC" + tipo + reco.getId() + "\" -> \"nodeC" + tipo + reco.getAnterior().getId() + "\"\n";
+            rank += "\"nodeC" + tipo + reco.getId() + "\"; ";
+            if (reco.getData() instanceof Edificio){
+                Edificio temp = (Edificio)reco.getData();
+                SimpleEnlazada simple = temp.getSalones();
+                if (simple.getRaiz()!=null){
+                    retorno+= "nodeC"+tipo+reco.getId()+" ->"+" nodeS"+simple.getRaiz().getId()+";";
+                    retorno+= simple.crear_doc();
+                }
+            }
+            reco = reco.getSiguiente();
+        } while (reco != raiz);
+        retorno += rank+"}";
+        return retorno;
+    }
+    
+    public SimpleEnlazada obtener_salones(){
+        SimpleEnlazada retorno = new SimpleEnlazada();
+        NodoCircular<T> reco = raiz;
+        do{
+            if (reco.getData() instanceof Edificio){
+                Edificio temp = (Edificio)reco.getData();
+                SimpleEnlazada simple = temp.getSalones();
+                if (simple.getRaiz()!=null){
+                    SimpleEnlazada.NodoSimple itera = simple.getRaiz();
+                    while(itera!=null){
+                        retorno.ingresar(itera.getId(), itera.getData());
+                        itera = itera.getSiguiente();
+                    }
+                }
+            }
+            reco = reco.getSiguiente();
+        }while(reco!=raiz);
+        return retorno;
+    }
+    
+    public boolean existe_salon(int numero){
+        boolean retorno = false;
+        NodoCircular<T> reco = raiz;
+        do{
+            if (reco.getData() instanceof Edificio){
+                Edificio temp = (Edificio)reco.getData();
+                SimpleEnlazada simple = temp.getSalones();
+                if (simple.getRaiz()!=null){
+                    SimpleEnlazada.NodoSimple itera = simple.getRaiz();
+                    while(itera!=null){
+                        if (itera.getId()==numero){
+                            return true;
+                        }
+                        itera = itera.getSiguiente();
+                    }
+                }
+            }
+            reco = reco.getSiguiente();
+        }while(reco!=raiz);
         return retorno;
     }
 
-    private class NodoCircular<T> {
+    public class NodoCircular<T> {
 
         private NodoCircular<T> siguiente;
         private NodoCircular<T> anterior;
@@ -241,11 +315,11 @@ public class Circular<T> {
             this.id = id;
         }
 
-        private NodoCircular<T> getSiguiente() {
+        public NodoCircular<T> getSiguiente() {
             return this.siguiente;
         }
 
-        private NodoCircular<T> getAnterior() {
+        public NodoCircular<T> getAnterior() {
             return this.anterior;
         }
 
@@ -264,5 +338,7 @@ public class Circular<T> {
         public void setAnterior(NodoCircular<T> anterior) {
             this.anterior = anterior;
         }
+        
+        
     }
 }

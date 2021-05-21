@@ -1,0 +1,32 @@
+digraph G{
+node [shape = box,height=.1];nodeCE2653[label = " T1 "];
+"nodeCE2653" -> "nodeCE2654"
+"nodeCE2653" -> "nodeCE82292"
+nodeCE2653 -> nodeS3;nodeS3[label="#3\n150 estudiantes"];nodeCE2654[label = " T2 "];
+"nodeCE2654" -> "nodeCE2655"
+"nodeCE2654" -> "nodeCE2653"
+nodeCE2654 -> nodeS31;nodeS31[label="#31\n200 estudiantes"];nodeCE2655[label = " T3 "];
+"nodeCE2655" -> "nodeCE2656"
+"nodeCE2655" -> "nodeCE2654"
+nodeCE2655 -> nodeS28;nodeS28[label="#28\n100 estudiantes"];nodeCE2656[label = " T4 "];
+"nodeCE2656" -> "nodeCE2657"
+"nodeCE2656" -> "nodeCE2655"
+nodeCE2656 -> nodeS18;nodeS18[label="#18\n300 estudiantes"];nodeCE2657[label = " T5 "];
+"nodeCE2657" -> "nodeCE2658"
+"nodeCE2657" -> "nodeCE2656"
+nodeCE2657 -> nodeS8;nodeS8[label="#8\n330 estudiantes"];nodeCE2658[label = " T6 "];
+"nodeCE2658" -> "nodeCE2659"
+"nodeCE2658" -> "nodeCE2657"
+nodeCE2658 -> nodeS9;nodeS9[label="#9\n350 estudiantes"];nodeCE2659[label = " T7 "];
+"nodeCE2659" -> "nodeCE2660"
+"nodeCE2659" -> "nodeCE2658"
+nodeCE2659 -> nodeS32;nodeS32[label="#32\n200 estudiantes"];nodeCE2660[label = " T8 "];
+"nodeCE2660" -> "nodeCE82291"
+"nodeCE2660" -> "nodeCE2659"
+nodeCE2660 -> nodeS2;nodeS2[label="#2\n340 estudiantes"];nodeCE82291[label = " T10 "];
+"nodeCE82291" -> "nodeCE82292"
+"nodeCE82291" -> "nodeCE2660"
+nodeCE82291 -> nodeS1;nodeS1[label="#1\n320 estudiantes"];nodeCE82292[label = " T11 "];
+"nodeCE82292" -> "nodeCE2653"
+"nodeCE82292" -> "nodeCE82291"
+nodeCE82292 -> nodeS15;nodeS15[label="#15\n300 estudiantes"];{rank=same;"nodeCE2653"; "nodeCE2654"; "nodeCE2655"; "nodeCE2656"; "nodeCE2657"; "nodeCE2658"; "nodeCE2659"; "nodeCE2660"; "nodeCE82291"; "nodeCE82292"; }}

@@ -54,6 +54,8 @@ public class Curso {
         this.creditos = creditos;
     }
     
-    
+    public String toString(){
+        return codigo+"\\n"+nombre+"\\nSemestre: "+semestre+"\\nCreditos: "+creditos;
+    }
     
 }

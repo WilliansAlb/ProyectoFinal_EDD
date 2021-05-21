@@ -47,4 +47,8 @@ public class Salon {
     public void setCapacidad(int capacidad) {
         this.capacidad = capacidad;
     }
+    
+    public String toString(){
+        return "#"+numero+"\\n"+capacidad+" estudiantes";
+    }
 }

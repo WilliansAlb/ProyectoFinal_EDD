@@ -47,14 +47,13 @@ public class Contenedor {
         if (nuevo.getTipo() == nuevo.ESTUDIANTE) {
             Estudiante e = estudiantes.buscar(id);
             if (e == null) {
-                System.out.println("usuario ingresado");
                 resultado.ingresar(conteo_res, "Usuario con el id " + id + " no ingresado por no existir en la hash de estudiantes");
             } else {
-                usuarios.insertar2(id, e);
+                usuarios.insertar2(id, nuevo);
                 resultado.ingresar(conteo_res, "Usuario con el id " + id + " ingresado con exito");
             }
         } else {
-            usuarios.insertar(id, nuevo);
+            usuarios.insertar2(id, nuevo);
             resultado.ingresar(conteo_res, "Usuario con el id " + id + " ingresado con exito");
         }
         conteo_res++;

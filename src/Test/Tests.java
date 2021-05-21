@@ -38,7 +38,7 @@ public class Tests {
         circular.eliminar(201930221);
         System.out.println("\n\n\n---------------------------------------------------------\n\n");
         circular.imprimir();
-        System.out.println(circular.documento());
+        //System.out.println(circular.documento());
     }
     
     public void probando_B(){
@@ -94,10 +94,10 @@ public class Tests {
         arbol.insertar(201930221, new Estudiante(201930221, "Fernandez", "San Lorenzo"));
         arbol.insertar(200830221, new Estudiante(200830221, "Lesly", "San Lorenzo"));
         arbol.insertar(211830221, new Estudiante(211830221, "Aguilar", "San Lorenzo"));
-        arbol.crear_doc();
+        //arbol.crear_doc();
         arbol.eliminar(201830258);
         System.out.println("\n\n\n---------------------------------------------------------\n\n");
-        arbol.crear_doc();
+        //arbol.crear_doc();
     }
 
     public void probar_hash() {

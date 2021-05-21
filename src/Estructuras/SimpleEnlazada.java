@@ -125,6 +125,19 @@ public class SimpleEnlazada<T> {
         }
     }
     
+    public String crear_doc(){
+        NodoSimple<T> temp = raiz;
+        String retorno = "";
+        while (temp != null) {
+            retorno+= "nodeS"+temp.getId()+"[label=\""+temp.getData().toString()+"\"];";
+            if (temp.getSiguiente()!=null){
+                retorno+="nodeS"+temp.getId()+" -> "+"nodeS"+temp.getSiguiente().getId()+";";
+            }
+            temp = temp.getSiguiente();
+        }
+        return retorno;
+    }
+    
     /**
      * Método que modifica el dato que se le envio para modificar
      * @param id el id del dato a modificar

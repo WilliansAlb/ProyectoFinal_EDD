@@ -19,7 +19,7 @@ public class Hash<T> {
     private NodoHash<T> raiz;
     public static final double CARGA = 0.55;
     public static final String INICIO_GRAPH = "digraph G{\n" +
-"	nodesep=0.3;\n" +
+"	nodesep=0.1;\n" +
 "	rankdir=LR;\n" +
 "	node [shape=record, width = .1, height = .1];\n	node[width = 1.5];\n";
 
@@ -73,7 +73,7 @@ public class Hash<T> {
     public String escribir_doc() {
         NodoHash<T> temp = raiz;
         String retorno = INICIO_GRAPH+"node0B[label =\"";
-        //[label = "<f0> 1|<f1> 2|<f2> 3|<f3> 4|<f4> 5|<f5> 6|<f6> 7|<f7> 8",height=2.5];
+        //[label = "<f0> 1|<f1> 2|<f2> 3|<f3> 4|<f4> 5|<f5> 6|<f6> 7|<f7> 8",height=4];
         for (int i = 0; i < size; i++) {
             retorno += "<f"+i+"> "+i+" ";
             if (i!=size-1){
@@ -83,7 +83,7 @@ public class Hash<T> {
         retorno+="\", height=2.5];\n";
         while (temp != null) {
             if (temp.getData() != null) {
-                retorno+="node"+temp.getId()+"[label = \" "+temp.getData().toString()+" \"];\n";
+                retorno+="node"+temp.getId()+"[label = \"{<n> | "+temp.getData().toString()+" | <m> }\", width=5];\n";
                 retorno+="node0B:f"+temp.getId()+" -> node"+temp.getId()+":n;\n";
             }
             temp = temp.getSiguiente();
@@ -160,6 +160,18 @@ public class Hash<T> {
         } else {
             return null;
         }
+    }
+    
+    public boolean editar(int id, T nueva){
+        NodoHash<T> temp = raiz;
+        while (temp != null) {
+            if (temp.getId() == id) {
+                temp.setData(nueva);
+                return true;
+            }
+            temp = temp.getSiguiente();
+        }
+        return false;
     }
 
     public Estudiante buscar(int id, int conteo) {

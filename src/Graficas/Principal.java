@@ -27,7 +27,9 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.JTableHeader;
@@ -43,8 +45,9 @@ public class Principal extends javax.swing.JFrame {
     Modelo modelo;
 
     ArrayList<Estudiante> listaPersonas;//lista que simula la información de la BD
+    SimpleEnlazada salones = new SimpleEnlazada();
     Contenedor contenedor;
-
+    public int seleccion_estudiante = -1;
     private int filasTabla;
     private int columnasTabla;
 
@@ -70,6 +73,11 @@ public class Principal extends javax.swing.JFrame {
         //construirTabla();
         this.setLocationRelativeTo(null);
         btn_cargar.setVisible(false);
+        btn_cancel_estudiante.setVisible(false);
+        btn_cancel_usuario.setVisible(false);
+        btn_cancel_catedratico.setVisible(false);
+        btn_cancel_salon.setVisible(false);
+        btn_cancel_curso.setVisible(false);
     }
 
     /**
@@ -96,23 +104,81 @@ public class Principal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         crea_est = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
+        jscroll_usuarios = new javax.swing.JScrollPane();
+        tabla_usuarios = new javax.swing.JTable();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        text_id = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        text_user = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        text_password = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel14 = new javax.swing.JLabel();
+        btn_cancel_usuario = new javax.swing.JButton();
+        btn_usuario = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jscroll_edificios = new javax.swing.JScrollPane();
+        tabla_edificios = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        text_edificio = new javax.swing.JTextField();
+        btn_edificio = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
+        jscroll_salones = new javax.swing.JScrollPane();
+        tabla_salones = new javax.swing.JTable();
+        jPanel19 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        combo_edificios = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        text_numero = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        text_capacidad = new javax.swing.JTextField();
+        btn_salon = new javax.swing.JButton();
+        btn_cancel_salon = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jscroll_estudiantes = new javax.swing.JScrollPane();
         tabla_estudiantes = new javax.swing.JTable();
         jPanel10 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        text_carnet = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        text_nombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        text_direccion = new javax.swing.JTextField();
+        btn_estudiante = new javax.swing.JButton();
+        btn_cancel_estudiante = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
-        jPanel8 = new javax.swing.JPanel();
+        jscroll_catedraticos = new javax.swing.JScrollPane();
+        tabla_catedraticos = new javax.swing.JTable();
+        jPanel18 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        text_idc = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        text_nombrec = new javax.swing.JTextField();
+        text_direccionc = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        btn_cancel_catedratico = new javax.swing.JButton();
+        btn_catedratico = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
+        jscroll_cursos = new javax.swing.JScrollPane();
+        tabla_cursos = new javax.swing.JTable();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        text_codigo = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        text_nombre_curso = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        text_semestre = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        text_creditos = new javax.swing.JTextField();
+        btn_curso = new javax.swing.JButton();
+        btn_cancel_curso = new javax.swing.JButton();
         jPanel11 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
@@ -120,6 +186,14 @@ public class Principal extends javax.swing.JFrame {
         label_horario = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         label_estudiantes = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        label_usuarios = new javax.swing.JLabel();
+        jPanel15 = new javax.swing.JPanel();
+        label_edificios = new javax.swing.JLabel();
+        jPanel17 = new javax.swing.JPanel();
+        label_catedraticos = new javax.swing.JLabel();
+        jPanel20 = new javax.swing.JPanel();
+        label_cursos = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -153,7 +227,7 @@ public class Principal extends javax.swing.JFrame {
         );
         panel_textLayout.setVerticalGroup(
             panel_textLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 107, Short.MAX_VALUE)
+            .addGap(0, 108, Short.MAX_VALUE)
         );
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -206,7 +280,7 @@ public class Principal extends javax.swing.JFrame {
             panel_imgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_imgLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -244,41 +318,276 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("CARGA MASIVA", jPanel1);
 
+        tabla_usuarios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscroll_usuarios.setViewportView(tabla_usuarios);
+
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("DATOS USUARIO");
+
+        jLabel11.setText("ID:");
+
+        jLabel12.setText("USER:");
+
+        jLabel13.setText("PASSWORD:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "super", "colaborador", "estudiante" }));
+
+        jLabel14.setText("TIPO:");
+
+        btn_cancel_usuario.setText("CANCELAR");
+
+        btn_usuario.setText("AGREGAR");
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_id)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_user, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel16Layout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_password)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_usuario)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancel_usuario)))
+                .addContainerGap())
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel16Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(text_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12)
+                    .addComponent(text_user, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(text_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(btn_cancel_usuario)
+                    .addComponent(btn_usuario))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_usuarios)
+                    .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         crea_est.addTab("USUARIO", jPanel3);
+
+        tabla_edificios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_edificios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_edificiosMouseClicked(evt);
+            }
+        });
+        jscroll_edificios.setViewportView(tabla_edificios);
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("CREACION Y ELIMINACIÓN DE EDIFICIOS");
+
+        jLabel9.setText("Identificador:");
+
+        btn_edificio.setText("AGREGAR");
+        btn_edificio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_edificioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_edificio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_edificio)))
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(text_edificio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_edificio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         crea_est.addTab("EDIFICIO", jPanel4);
+
+        tabla_salones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_salones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_salonesMouseClicked(evt);
+            }
+        });
+        jscroll_salones.setViewportView(tabla_salones);
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("DATOS DEL SALON");
+
+        jLabel20.setText("EDIFICIO:");
+
+        jLabel21.setText("NUMERO:");
+
+        jLabel22.setText("CAPACIDAD:");
+
+        btn_salon.setText("AGREGAR");
+        btn_salon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_salonActionPerformed(evt);
+            }
+        });
+
+        btn_cancel_salon.setText("CANCEL");
+
+        javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
+        jPanel19.setLayout(jPanel19Layout);
+        jPanel19Layout.setHorizontalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(combo_edificios, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_numero, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_capacidad, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                    .addGroup(jPanel19Layout.createSequentialGroup()
+                        .addComponent(btn_salon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_cancel_salon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel19Layout.setVerticalGroup(
+            jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel19Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(combo_edificios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21)
+                    .addComponent(text_numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22)
+                    .addComponent(text_capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel19Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_salon)
+                    .addComponent(btn_cancel_salon))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_salones)
+                    .addComponent(jPanel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_salones, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         crea_est.addTab("SALON", jPanel5);
@@ -291,6 +600,11 @@ public class Principal extends javax.swing.JFrame {
                 "Carné", "Nombre", "Dirección"
             }
         ));
+        tabla_estudiantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_estudiantesMouseClicked(evt);
+            }
+        });
         jscroll_estudiantes.setViewportView(tabla_estudiantes);
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -298,17 +612,23 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel5.setText("Carne:");
 
-        jTextField2.setText("jTextField2");
-
         jLabel6.setText("Nombre:");
-
-        jTextField3.setText("jTextField3");
 
         jLabel7.setText("Direccion:");
 
-        jTextField4.setText("jTextField4");
+        btn_estudiante.setText("AGREGAR");
+        btn_estudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_estudianteActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("AGREGAR");
+        btn_cancel_estudiante.setText("CANCELAR");
+        btn_cancel_estudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancel_estudianteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -321,96 +641,291 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(text_carnet, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3))
+                        .addComponent(text_nombre))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4)
+                        .addComponent(text_direccion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(btn_estudiante)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancel_estudiante)))
                 .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(text_carnet)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(text_nombre))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(text_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_estudiante)
+                            .addComponent(btn_cancel_estudiante)))))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         crea_est.addTab("ESTUDIANTE", jPanel6);
 
+        tabla_catedraticos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_catedraticos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_catedraticosMouseClicked(evt);
+            }
+        });
+        jscroll_catedraticos.setViewportView(tabla_catedraticos);
+
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("DATOS DEL CATEDRATICO");
+
+        jLabel16.setText("ID:");
+
+        jLabel17.setText("NOMBRE:");
+
+        jLabel18.setText("DIRECCION:");
+
+        btn_cancel_catedratico.setText("CANCELAR");
+        btn_cancel_catedratico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancel_catedraticoActionPerformed(evt);
+            }
+        });
+
+        btn_catedratico.setText("AGREGAR");
+        btn_catedratico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_catedraticoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
+        jPanel18.setLayout(jPanel18Layout);
+        jPanel18Layout.setHorizontalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_idc, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_nombrec))
+                    .addGroup(jPanel18Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_direccionc)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_catedratico)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancel_catedratico)))
+                .addContainerGap())
+        );
+        jPanel18Layout.setVerticalGroup(
+            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel18Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_idc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16)
+                    .addComponent(jLabel17)
+                    .addComponent(text_nombrec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(text_direccionc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18)
+                    .addComponent(btn_cancel_catedratico)
+                    .addComponent(btn_catedratico))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         crea_est.addTab("CATEDRATICO", jPanel7);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
-        );
+        tabla_cursos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tabla_cursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_cursosMouseClicked(evt);
+            }
+        });
+        jscroll_cursos.setViewportView(tabla_cursos);
 
-        crea_est.addTab("HORARIO", jPanel8);
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("DATOS DEL CURSO");
+
+        jLabel24.setText("CODIGO:");
+
+        jLabel25.setText("NOMBRE:");
+
+        jLabel26.setText("SEMESTRE:");
+
+        jLabel27.setText("CREDITOS:");
+
+        btn_curso.setText("AGREGAR");
+        btn_curso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cursoActionPerformed(evt);
+            }
+        });
+
+        btn_cancel_curso.setText("CANCELAR");
+        btn_cancel_curso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancel_cursoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
+        jPanel21.setLayout(jPanel21Layout);
+        jPanel21Layout.setHorizontalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel25)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_nombre_curso, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(text_creditos, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel21Layout.createSequentialGroup()
+                        .addComponent(btn_curso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_cancel_curso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel21Layout.setVerticalGroup(
+            jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel21Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(text_codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25)
+                    .addComponent(text_nombre_curso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel26)
+                    .addComponent(text_semestre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27)
+                    .addComponent(text_creditos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_curso)
+                    .addComponent(btn_cancel_curso))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscroll_cursos)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 469, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscroll_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         crea_est.addTab("CURSO", jPanel9);
@@ -436,7 +951,7 @@ public class Principal extends javax.swing.JFrame {
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 495, Short.MAX_VALUE)
+            .addGap(0, 497, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("ASIGNAR", jPanel11);
@@ -456,7 +971,7 @@ public class Principal extends javax.swing.JFrame {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_horario, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(label_horario, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -477,11 +992,95 @@ public class Principal extends javax.swing.JFrame {
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(label_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(label_estudiantes, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane2.addTab("ESTUDIANTES", jPanel14);
+
+        label_usuarios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_usuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("USUARIOS", jPanel8);
+
+        label_edificios.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_edificios, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("EDIFICIOS", jPanel15);
+
+        label_catedraticos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_catedraticos, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("CATEDRATICOS", jPanel17);
+
+        label_cursos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
+        jPanel20.setLayout(jPanel20Layout);
+        jPanel20Layout.setHorizontalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel20Layout.setVerticalGroup(
+            jPanel20Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel20Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label_cursos, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jTabbedPane2.addTab("CURSOS", jPanel20);
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -545,12 +1144,423 @@ public class Principal extends javax.swing.JFrame {
                 obtener.parse();
                 contenedor = obtener.con;
                 escribir_resultado(contenedor.resultado);
-                construirTabla();
+                construir_tabla_estudiantes();
+                construir_tabla_edificios();
+                construir_tabla_usuarios();
+                construir_tabla_catedraticos();
+                construir_tabla_cursos();
             } catch (Exception ex) {
                 Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btn_cargarActionPerformed
+
+    private void tabla_estudiantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_estudiantesMouseClicked
+        //capturo fila o columna dependiendo de mi necesidad
+        int fila = tabla_estudiantes.rowAtPoint(evt.getPoint());
+        int columna = tabla_estudiantes.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_estudiantes.getColumnCount() - 2) {
+            seleccion_estudiante = Integer.parseInt(tabla_estudiantes.getModel().getValueAt(fila, 0).toString());
+            text_carnet.setText(tabla_estudiantes.getModel().getValueAt(fila, 1).toString());
+            text_carnet.setEditable(false);
+            text_carnet.setEnabled(false);
+            text_nombre.setText(tabla_estudiantes.getModel().getValueAt(fila, 2).toString());
+            text_direccion.setText(tabla_estudiantes.getModel().getValueAt(fila, 3).toString());
+            btn_estudiante.setText("MODIFICAR");
+            btn_cancel_estudiante.setVisible(true);
+        } else if (columna == tabla_estudiantes.getColumnCount() - 1) {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro quieres eliminar al estudiante?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+            if (opcion == JOptionPane.OK_OPTION) {
+                int se = Integer.parseInt(tabla_estudiantes.getModel().getValueAt(fila, 0).toString());
+                if (contenedor.estudiantes.editar(se, null)) {
+                    contenedor.estudiantes.setOcupadas(contenedor.estudiantes.getOcupadas() - 1);
+                    construir_tabla_estudiantes();
+                    JOptionPane.showMessageDialog(null, "Estudiante eliminado correctamente");
+                    escribir_doc("hash", label_estudiantes, contenedor.estudiantes.escribir_doc());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Ocurrio un error al intentar eliminar al estudiante");
+                }
+            }
+        }
+    }//GEN-LAST:event_tabla_estudiantesMouseClicked
+
+    private void btn_cancel_estudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_estudianteActionPerformed
+        text_carnet.setText("");
+        text_carnet.setEditable(true);
+        text_carnet.setEnabled(true);
+        text_nombre.setText("");
+        text_direccion.setText("");
+        btn_estudiante.setText("AGREGAR");
+        seleccion_estudiante = -1;
+        btn_cancel_estudiante.setVisible(false);
+    }//GEN-LAST:event_btn_cancel_estudianteActionPerformed
+
+    private void btn_estudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_estudianteActionPerformed
+        String indicador = btn_estudiante.getText();
+        if (indicador.equalsIgnoreCase("MODIFICAR")) {
+            if (seleccion_estudiante != -1) {
+                String nombre = text_nombre.getText();
+                String direccion = text_direccion.getText();
+                if (!nombre.isEmpty() && !direccion.isEmpty()) {
+                    Estudiante es = contenedor.estudiantes.obtener_index(seleccion_estudiante);
+                    es.setNombre(nombre);
+                    es.setDireccion(direccion);
+                    if (contenedor.estudiantes.editar(seleccion_estudiante, es)) {
+                        text_carnet.setText("");
+                        text_carnet.setEnabled(true);
+                        text_carnet.setEditable(true);
+                        text_nombre.setText("");
+                        text_direccion.setText("");
+                        btn_estudiante.setText("AGREGAR");
+                        btn_cancel_estudiante.setVisible(false);
+                        construir_tabla_estudiantes();
+                        JOptionPane.showMessageDialog(null, "Estudiante modificado correctamente");
+                        escribir_doc("hash", label_estudiantes, contenedor.estudiantes.escribir_doc());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ocurrio un error y no se pudo modificar el estudiante");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
+                }
+            }
+        } else {
+            String carnet = text_carnet.getText();
+            String nombre = text_nombre.getText();
+            String direccion = text_direccion.getText();
+            if (!carnet.isEmpty() && !nombre.isEmpty() && !direccion.isEmpty()) {
+                String regex = "\\d+";
+                if (carnet.matches(regex)) {
+                    int car = Integer.parseInt(carnet);
+                    Estudiante es = contenedor.estudiantes.buscar(car);
+                    if (es != null) {
+                        JOptionPane.showMessageDialog(null, "El carnet que ingresaste ya le corresponde a otra persona");
+                    } else {
+                        es = new Estudiante(car, nombre, direccion);
+                        boolean ingresado = contenedor.estudiantes.insertar(car, es);
+                        if (ingresado) {
+                            text_carnet.setText("");
+                            text_nombre.setText("");
+                            text_direccion.setText("");
+                            construir_tabla_estudiantes();
+                            JOptionPane.showMessageDialog(null, "Estudiante ingresado correctamente");
+                            escribir_doc("hash", label_estudiantes, contenedor.estudiantes.escribir_doc());
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Estudiante no fue ingresado por exceder el numero de claves posibles");
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos vacios");
+            }
+        }
+    }//GEN-LAST:event_btn_estudianteActionPerformed
+
+    private void tabla_edificiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_edificiosMouseClicked
+        int fila = tabla_edificios.rowAtPoint(evt.getPoint());
+        int columna = tabla_edificios.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_edificios.getColumnCount() - 1) {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro quieres eliminar al edificio?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+            if (opcion == JOptionPane.OK_OPTION) {
+                int se = tabla_edificios.getModel().getValueAt(fila, 0).toString().hashCode();
+                if (contenedor.edificios.eliminar(se)) {
+                    construir_tabla_edificios();
+                    JOptionPane.showMessageDialog(null, "Edificio eliminado correctamente");
+                    escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sucedio un error inesperado, no se logro eliminar el edificio");
+                }
+            }
+        }
+    }//GEN-LAST:event_tabla_edificiosMouseClicked
+
+    private void btn_edificioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_edificioActionPerformed
+        String edi = text_edificio.getText();
+        if (!edi.isEmpty()) {
+            Edificio e = (Edificio) contenedor.edificios.obtener(edi.hashCode());
+            if (e != null) {
+                JOptionPane.showMessageDialog(null, "Ya existe un edificio con ese nombre");
+            } else {
+                text_edificio.setText("");
+                Edificio nuevo = new Edificio(edi.hashCode(), edi);
+                contenedor.edificios.insertar2(edi.hashCode(), nuevo);
+                construir_tabla_edificios();
+                JOptionPane.showMessageDialog(null, "Edificio agregado correctamente");
+                escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingresa el nombre del edificio primero");
+        }
+    }//GEN-LAST:event_btn_edificioActionPerformed
+
+    private void tabla_salonesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_salonesMouseClicked
+        int fila = tabla_salones.rowAtPoint(evt.getPoint());
+        int columna = tabla_salones.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_salones.getColumnCount() - 2) {
+            combo_edificios.setEnabled(false);
+            combo_edificios.setSelectedItem(tabla_salones.getModel().getValueAt(fila, 0).toString());
+            btn_cancel_salon.setVisible(true);
+            text_numero.setText(tabla_salones.getModel().getValueAt(fila, 1).toString());
+            text_numero.setEnabled(false);
+            text_capacidad.setText(tabla_salones.getModel().getValueAt(fila, 2).toString());
+            btn_salon.setText("MODIFICAR");
+        } else if (columna == tabla_salones.getColumnCount() - 1) {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro quieres eliminar al edificio?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+            if (opcion == JOptionPane.OK_OPTION) {
+                int ed = tabla_salones.getModel().getValueAt(fila, 0).toString().hashCode();
+                int se = Integer.parseInt(tabla_salones.getModel().getValueAt(fila, 1).toString());
+                Edificio edi = (Edificio) contenedor.edificios.obtener(ed);
+                if (edi != null) {
+                    edi.getSalones().eliminar(se);
+                    construir_tabla_edificios();
+                    JOptionPane.showMessageDialog(null, "Salon eliminado correctamente");
+                    escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "No existe el edificio de donde tratas de eliminar el salon");
+                }
+            }
+        }
+    }//GEN-LAST:event_tabla_salonesMouseClicked
+
+    private void btn_salonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salonActionPerformed
+        String accion = btn_salon.getText();
+        if (accion.equalsIgnoreCase("MODIFICAR")) {
+            int edificio = combo_edificios.getSelectedItem().toString().hashCode();
+            int salon = Integer.parseInt(text_numero.getText());
+            int capacidad = Integer.parseInt(text_capacidad.getText());
+            ((Salon) ((Edificio) contenedor.edificios.obtener(edificio)).getSalones().obtener(salon)).setCapacidad(capacidad);
+            construir_tabla_edificios();
+            JOptionPane.showMessageDialog(null, "Salon modificado correctamente");
+            escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
+            btn_cancel_salon.setVisible(false);
+            btn_salon.setText("AGREGAR");
+            combo_edificios.setEnabled(true);
+            text_numero.setEnabled(true);
+            text_numero.setText("");
+            text_capacidad.setText("");
+        } else {
+            SimpleEnlazada.NodoSimple itera = salones.getRaiz();
+            int edificio = combo_edificios.getSelectedItem().toString().hashCode();
+            int salon = Integer.parseInt(text_numero.getText());
+            int capacidad = Integer.parseInt(text_capacidad.getText());
+            boolean existe = false;
+            while (itera != null) {
+                if (itera.getId() == salon) {
+                    existe = true;
+                    break;
+                }
+                itera = itera.getSiguiente();
+            }
+            if (existe) {
+                JOptionPane.showMessageDialog(null, "Ya existe un salon con el mismo numero, cambialo");
+            } else {
+                Salon nuevo = new Salon(((Edificio) contenedor.edificios.obtener(edificio)), salon, capacidad);
+                ((Edificio) contenedor.edificios.obtener(edificio)).getSalones().ingresar(salon, nuevo);
+                construir_tabla_edificios();
+                JOptionPane.showMessageDialog(null, "Salon ingresado correctamente");
+                escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
+                btn_cancel_salon.setVisible(false);
+                btn_salon.setText("AGREGAR");
+                text_numero.setText("");
+                text_capacidad.setText("");
+            }
+        }
+    }//GEN-LAST:event_btn_salonActionPerformed
+
+    private void tabla_catedraticosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_catedraticosMouseClicked
+        int fila = tabla_catedraticos.rowAtPoint(evt.getPoint());
+        int columna = tabla_catedraticos.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_catedraticos.getColumnCount() - 2) {
+            text_idc.setEnabled(false);
+            text_idc.setText(tabla_catedraticos.getModel().getValueAt(fila, 0).toString());
+            btn_cancel_catedratico.setVisible(true);
+            text_nombrec.setText(tabla_catedraticos.getModel().getValueAt(fila, 1).toString());
+            text_direccionc.setText(tabla_catedraticos.getModel().getValueAt(fila, 2).toString());
+            btn_salon.setText("MODIFICAR");
+        } else if (columna == tabla_catedraticos.getColumnCount() - 1) {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro quieres eliminar al catedratico?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+            if (opcion == JOptionPane.OK_OPTION) {
+                int ed = Integer.parseInt(tabla_catedraticos.getModel().getValueAt(fila, 0).toString());
+                contenedor.catedraticos.eliminar(ed);
+                construir_tabla_catedraticos();
+                JOptionPane.showMessageDialog(null, "Catedratico eliminado correctamente");
+                escribir_doc("avl", label_catedraticos, contenedor.catedraticos.escribir_doc());
+            }
+        }
+    }//GEN-LAST:event_tabla_catedraticosMouseClicked
+
+    private void btn_catedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_catedraticoActionPerformed
+        String accion = btn_salon.getText();
+        if (accion.equalsIgnoreCase("MODIFICAR")) {
+            String id = text_idc.getText();
+            String nombre = text_nombrec.getText();
+            String direccion = text_direccionc.getText();
+            if (!id.isEmpty() && !nombre.isEmpty() && !direccion.isEmpty()) {
+                int idn = Integer.parseInt(id);
+                ((Catedratico) contenedor.catedraticos.obtener(idn)).setNombre(nombre);
+                ((Catedratico) contenedor.catedraticos.obtener(idn)).setDireccion(direccion);
+                limpiar_campos_catedratico();
+                construir_tabla_catedraticos();
+                JOptionPane.showMessageDialog(null, "Catedratico modificado correctamente");
+                escribir_doc("avl", label_catedraticos, contenedor.catedraticos.escribir_doc());
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos en blanco");
+            }
+        } else {
+            String id = text_idc.getText();
+            String nombre = text_nombrec.getText();
+            String direccion = text_direccionc.getText();
+            if (!id.isEmpty() && !nombre.isEmpty() && !direccion.isEmpty()) {
+                String regex = "\\d+";
+                if (id.matches(regex)) {
+                    int idn = Integer.parseInt(id);
+                    if (((Catedratico) contenedor.catedraticos.obtener(idn)) == null) {
+                        Catedratico nuevo = new Catedratico(idn, nombre, direccion);
+                        contenedor.catedraticos.insertar(idn, nuevo);
+                        limpiar_campos_catedratico();
+                        construir_tabla_catedraticos();
+                        JOptionPane.showMessageDialog(null, "Catedratico ingresado correctamente");
+                        escribir_doc("avl", label_catedraticos, contenedor.catedraticos.escribir_doc());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya existe un catedratico con ese id");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El id tiene que ser un numero");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos en blanco");
+            }
+        }
+    }//GEN-LAST:event_btn_catedraticoActionPerformed
+
+    private void btn_cancel_catedraticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_catedraticoActionPerformed
+        limpiar_campos_catedratico();
+    }//GEN-LAST:event_btn_cancel_catedraticoActionPerformed
+
+    private void btn_cancel_cursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancel_cursoActionPerformed
+        limpiar_campos_curso();
+    }//GEN-LAST:event_btn_cancel_cursoActionPerformed
+
+    private void tabla_cursosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_cursosMouseClicked
+        int fila = tabla_cursos.rowAtPoint(evt.getPoint());
+        int columna = tabla_cursos.columnAtPoint(evt.getPoint());
+
+        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
+		 * que solo se produzca algo si selecciono una fila de esa columna
+         */
+        if (columna == tabla_cursos.getColumnCount() - 2) {
+            text_codigo.setEnabled(false);
+            text_codigo.setText(tabla_cursos.getModel().getValueAt(fila, 0).toString());
+            btn_cancel_curso.setVisible(true);
+            text_nombre_curso.setText(tabla_cursos.getModel().getValueAt(fila, 1).toString());
+            text_semestre.setText(tabla_cursos.getModel().getValueAt(fila, 2).toString());
+            text_creditos.setText(tabla_cursos.getModel().getValueAt(fila, 3).toString());
+            btn_curso.setText("MODIFICAR");
+        } else if (columna == tabla_cursos.getColumnCount() - 1) {
+            int opcion = JOptionPane.showConfirmDialog(null, "¿Seguro quieres eliminar al curso?", "Eliminar", JOptionPane.OK_CANCEL_OPTION);
+            if (opcion == JOptionPane.OK_OPTION) {
+                int ed = Integer.parseInt(tabla_cursos.getModel().getValueAt(fila, 0).toString());
+                if (contenedor.cursos.eliminar(ed)) {
+                    construir_tabla_cursos();
+                    JOptionPane.showMessageDialog(null, "Curso eliminado correctamente");
+                    escribir_doc("circular_cursos", label_cursos, contenedor.cursos.escribir_doc("CU"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error inesperado, no se elimino el curso");
+                }
+            }
+        }
+    }//GEN-LAST:event_tabla_cursosMouseClicked
+
+    private void btn_cursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cursoActionPerformed
+        String accion = btn_curso.getText();
+        if (accion.equalsIgnoreCase("MODIFICAR")) {
+            String id = text_codigo.getText();
+            String nombre = text_nombre_curso.getText();
+            String semestre = text_semestre.getText();
+            String creditos = text_creditos.getText();
+            if (!id.isEmpty() && !nombre.isEmpty() && !semestre.isEmpty() && !creditos.isEmpty()) {
+                String regex = "\\d+";
+                if (id.matches(regex) && semestre.matches(regex) && creditos.matches(regex)) {
+                    int idn = Integer.parseInt(id);
+                    int sen = Integer.parseInt(semestre);
+                    int cren = Integer.parseInt(creditos);
+                    ((Curso) contenedor.cursos.obtener(idn)).setNombre(nombre);
+                    ((Curso) contenedor.cursos.obtener(idn)).setSemestre(sen);
+                    ((Curso) contenedor.cursos.obtener(idn)).setCreditos(cren);
+                    limpiar_campos_curso();
+                    construir_tabla_cursos();
+                    JOptionPane.showMessageDialog(null, "Curso modificado correctamente");
+                    escribir_doc("circular_cursos", label_cursos, contenedor.cursos.escribir_doc("CU"));
+                } else {
+                    JOptionPane.showMessageDialog(null, "Uno de los siguientes campos no es un numero (codigo,semestre,creditos)");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos en blanco");
+            }
+        } else {
+            String id = text_codigo.getText();
+            String nombre = text_nombre_curso.getText();
+            String semestre = text_semestre.getText();
+            String creditos = text_creditos.getText();
+            if (!id.isEmpty() && !nombre.isEmpty() && !semestre.isEmpty() && !creditos.isEmpty()) {
+                String regex = "\\d+";
+                if (id.matches(regex) && semestre.matches(regex) && creditos.matches(regex)) {
+                    int idn = Integer.parseInt(id);
+                    int sen = Integer.parseInt(semestre);
+                    int cren = Integer.parseInt(creditos);
+                    Curso en = ((Curso) contenedor.cursos.obtener(idn));
+                    if (en == null) {
+                        en = new Curso(idn,nombre,sen,cren);
+                        contenedor.cursos.insertar2(idn, en);
+                        limpiar_campos_curso();
+                        construir_tabla_cursos();
+                        JOptionPane.showMessageDialog(null, "Curso ingresado correctamente");
+                        escribir_doc("circular_cursos", label_cursos, contenedor.cursos.escribir_doc("CU"));
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ya existe un curso con ese codigo, cambialo");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Uno de los siguientes campos no es un numero (codigo,semestre,creditos)");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No puedes dejar campos en blanco");
+            }
+        }
+    }//GEN-LAST:event_btn_cursoActionPerformed
+
+    public void limpiar_campos_catedratico() {
+        text_idc.setText("");
+        text_idc.setEnabled(true);
+        text_nombrec.setText("");
+        text_direccionc.setText("");
+        btn_cancel_catedratico.setVisible(false);
+        btn_catedratico.setText("AGREGAR");
+    }
+
+    public void limpiar_campos_curso() {
+        text_codigo.setText("");
+        text_codigo.setEnabled(true);
+        text_nombre_curso.setText("");
+        text_semestre.setText("");
+        text_creditos.setText("");
+        btn_cancel_curso.setVisible(false);
+        btn_curso.setText("AGREGAR");
+    }
 
     public void escribir_resultado(SimpleEnlazada resultado) {
         String texto = "";
@@ -561,6 +1571,10 @@ public class Principal extends javax.swing.JFrame {
         }
         escribir_doc("b", label_horario, contenedor.horarios.crear_doc());
         escribir_doc("hash", label_estudiantes, contenedor.estudiantes.escribir_doc());
+        escribir_doc("circular_usuarios", label_usuarios, contenedor.usuarios.escribir_doc("U"));
+        escribir_doc("circular_edificios", label_edificios, contenedor.edificios.escribir_doc("E"));
+        escribir_doc("avl", label_catedraticos, contenedor.catedraticos.escribir_doc());
+        escribir_doc("circular_cursos", label_cursos, contenedor.cursos.escribir_doc("CU"));
         textArea.setText(texto);
         panel_img.setVisible(false);
         cambiante.setVisible(true);
@@ -570,12 +1584,13 @@ public class Principal extends javax.swing.JFrame {
      * Metodo que permite construir la tabla de personas se crean primero las
      * columnas y luego se asigna la información
      */
-    private void construirTabla() {
+    private void construir_tabla_estudiantes() {
 
         listaPersonas = consultarListaPersonas();
 
         ArrayList<String> titulosList = new ArrayList<>();
 
+        titulosList.add("LLAVE");
         titulosList.add("CARNET");
         titulosList.add("NOMBRE");
         titulosList.add("DIRECCION");
@@ -591,7 +1606,112 @@ public class Principal extends javax.swing.JFrame {
 		 * que luego se manda a construir la tabla
          */
         Object[][] data = obtenerMatrizDatos(titulosList);
-        construirTabla(titulos, data);
+        construir_tabla_estudiantes(titulos, data);
+    }
+
+    private void construir_tabla_edificios() {
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("NOMBRE");
+        titulosList.add("ELIMINAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtener_datos_edificios(titulosList);
+        construir_tabla_edificios(titulos, data);
+        construir_tabla_salones();
+    }
+
+    private void construir_tabla_cursos() {
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("CODIGO");
+        titulosList.add("NOMBRE");
+        titulosList.add("SEMESTRE");
+        titulosList.add("CREDITOS");
+        titulosList.add("MODIFICAR");
+        titulosList.add("ELIMINAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtener_datos_cursos(titulosList);
+        construir_tabla_cursos(titulos, data);
+    }
+
+    private void construir_tabla_usuarios() {
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("ID");
+        titulosList.add("USERNAME");
+        titulosList.add("PASSWORD");
+        titulosList.add("TIPO");
+        titulosList.add("MODIFICAR");
+        titulosList.add("ELIMINAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtener_datos_usuarios(titulosList);
+        construir_tabla_usuarios(titulos, data);
+    }
+
+    private void construir_tabla_catedraticos() {
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("ID");
+        titulosList.add("NOMBRE");
+        titulosList.add("DIRECCION");
+        titulosList.add("MODIFICAR");
+        titulosList.add("ELIMINAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtener_datos_catedraticos(titulosList);
+        construir_tabla_catedraticos(titulos, data);
+    }
+
+    private void construir_tabla_salones() {
+        ArrayList<String> titulosList = new ArrayList<>();
+
+        titulosList.add("EDIFICIO");
+        titulosList.add("SALON NUMERO");
+        titulosList.add("CAPACIDAD");
+        titulosList.add("MODIFICAR");
+        titulosList.add("ELIMINAR");
+
+        //se asignan las columnas al arreglo para enviarse al momento de construir la tabla
+        String titulos[] = new String[titulosList.size()];
+        for (int i = 0; i < titulos.length; i++) {
+            titulos[i] = titulosList.get(i);
+        }
+        /*obtenemos los datos de la lista y los guardamos en la matriz
+		 * que luego se manda a construir la tabla
+         */
+        Object[][] data = obtener_datos_salones(titulosList);
+        construir_tabla_salones(titulos, data);
     }
 
     /**
@@ -605,6 +1725,7 @@ public class Principal extends javax.swing.JFrame {
         for (int i = 0; i < contenedor.estudiantes.getSize(); i++) {
             Estudiante n = contenedor.estudiantes.obtener_index(i);
             if (n != null) {
+                n.setLlave(i);
                 lista.add(n);
             }
         }
@@ -629,14 +1750,144 @@ public class Principal extends javax.swing.JFrame {
 
         for (int x = 0; x < informacion.length; x++) {
 
-            informacion[x][0] = listaPersonas.get(x).getCarnet() + "";
-            informacion[x][1] = listaPersonas.get(x).getNombre() + "";
-            informacion[x][2] = listaPersonas.get(x).getDireccion() + "";
+            informacion[x][0] = listaPersonas.get(x).getLlave() + "";
+            informacion[x][1] = listaPersonas.get(x).getCarnet() + "";
+            informacion[x][2] = listaPersonas.get(x).getNombre() + "";
+            informacion[x][3] = listaPersonas.get(x).getDireccion() + "";
             //se asignan las plabras clave para que en la clase GestionCeldas se use para asignar el icono correspondiente
+            informacion[x][4] = "MODIFICAR";
+            informacion[x][5] = "ELIMINAR";
+        }
+
+        return informacion;
+    }
+
+    private Object[][] obtener_datos_edificios(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        ArrayList<Edificio> edis = new ArrayList<>();
+        Circular.NodoCircular temp = contenedor.edificios.raiz;
+        combo_edificios.removeAllItems();
+        do {
+            if (temp.getData() instanceof Edificio) {
+                edis.add((Edificio) temp.getData());
+                combo_edificios.addItem(edis.get(edis.size() - 1).getNombre());
+            }
+            temp = temp.getSiguiente();
+        } while (temp != contenedor.edificios.raiz);
+        salones = contenedor.edificios.obtener_salones();
+        String informacion[][] = new String[edis.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+
+            informacion[x][0] = edis.get(x).getNombre() + "";
+            informacion[x][1] = "ELIMINAR";
+        }
+        return informacion;
+    }
+
+    private Object[][] obtener_datos_cursos(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        ArrayList<Curso> edis = new ArrayList<>();
+        Circular.NodoCircular temp = contenedor.cursos.raiz;
+        do {
+            if (temp.getData() instanceof Curso) {
+                edis.add((Curso) temp.getData());
+            }
+            temp = temp.getSiguiente();
+        } while (temp != contenedor.cursos.raiz);
+
+        String informacion[][] = new String[edis.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+            informacion[x][0] = edis.get(x).getCodigo() + "";
+            informacion[x][1] = edis.get(x).getNombre() + "";
+            informacion[x][2] = edis.get(x).getSemestre() + "";
+            informacion[x][3] = edis.get(x).getCreditos() + "";
+            informacion[x][4] = "MODIFICAR";
+            informacion[x][5] = "ELIMINAR";
+        }
+        return informacion;
+    }
+
+    private Object[][] obtener_datos_salones(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        ArrayList<Salon> edis = new ArrayList<>();
+        SimpleEnlazada.NodoSimple tem = salones.getRaiz();
+        while (tem != null) {
+            edis.add((Salon) tem.getData());
+            tem = tem.getSiguiente();
+        }
+        String informacion[][] = new String[edis.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+            informacion[x][0] = edis.get(x).getEdificio().getNombre() + "";
+            informacion[x][1] = edis.get(x).getNumero() + "";
+            informacion[x][2] = edis.get(x).getCapacidad() + "";
             informacion[x][3] = "MODIFICAR";
             informacion[x][4] = "ELIMINAR";
         }
+        return informacion;
+    }
 
+    private Object[][] obtener_datos_usuarios(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        ArrayList<Usuario> users = new ArrayList<>();
+        Circular.NodoCircular temp = contenedor.usuarios.raiz;
+        do {
+            if (temp.getData() instanceof Usuario) {
+                users.add((Usuario) temp.getData());
+            }
+            temp = temp.getSiguiente();
+        } while (temp != contenedor.usuarios.raiz);
+
+        String informacion[][] = new String[users.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+
+            informacion[x][0] = users.get(x).getId() + "";
+            informacion[x][1] = users.get(x).getName() + "";
+            informacion[x][2] = users.get(x).getPassword() + "";
+            informacion[x][3] = users.get(x).getTipo(users.get(x).getTipo()) + "";
+            informacion[x][4] = "MODIFICAR";
+            informacion[x][5] = "ELIMINAR";
+        }
+        return informacion;
+    }
+
+    private Object[][] obtener_datos_catedraticos(ArrayList<String> titulosList) {
+
+        /*se crea la matriz donde las filas son dinamicas pues corresponde
+		 * a todos los usuarios, mientras que las columnas son estaticas
+		 * correspondiendo a las columnas definidas por defecto
+         */
+        ArrayList<Catedratico> catedraticos = contenedor.catedraticos.listado(contenedor.catedraticos.raiz);
+
+        String informacion[][] = new String[catedraticos.size()][titulosList.size()];
+
+        for (int x = 0; x < informacion.length; x++) {
+
+            informacion[x][0] = catedraticos.get(x).getNumero() + "";
+            informacion[x][1] = catedraticos.get(x).getNombre() + "";
+            informacion[x][2] = catedraticos.get(x).getDireccion() + "";
+            informacion[x][3] = "MODIFICAR";
+            informacion[x][4] = "ELIMINAR";
+        }
         return informacion;
     }
 
@@ -648,7 +1899,7 @@ public class Principal extends javax.swing.JFrame {
      * @param titulos
      * @param data
      */
-    private void construirTabla(String[] titulos, Object[][] data) {
+    private void construir_tabla_estudiantes(String[] titulos, Object[][] data) {
         modelo = new Modelo(titulos, data);
         //se asigna el modelo a la tabla
         tabla_estudiantes.setModel(modelo);
@@ -658,20 +1909,22 @@ public class Principal extends javax.swing.JFrame {
 
         //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
         tabla_estudiantes.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("numerico"));
-        tabla_estudiantes.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("texto"));
+        tabla_estudiantes.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("numerico"));
         tabla_estudiantes.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("texto"));
-        tabla_estudiantes.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("icono"));
+        tabla_estudiantes.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("texto"));
         tabla_estudiantes.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("icono"));
+        tabla_estudiantes.getColumnModel().getColumn(5).setCellRenderer(new GestionCeldas("icono"));
 
         tabla_estudiantes.getTableHeader().setReorderingAllowed(false);
         tabla_estudiantes.setRowHeight(30);//tamaño de las celdas
         tabla_estudiantes.setGridColor(new java.awt.Color(0, 0, 0));
         //Se define el tamaño de largo para cada columna y su contenido
-        tabla_estudiantes.getColumnModel().getColumn(0).setPreferredWidth(130);//documento
-        tabla_estudiantes.getColumnModel().getColumn(1).setPreferredWidth(380);//nombre
-        tabla_estudiantes.getColumnModel().getColumn(2).setPreferredWidth(350);//direccion
-        tabla_estudiantes.getColumnModel().getColumn(3).setPreferredWidth(100);//accion perfil
-        tabla_estudiantes.getColumnModel().getColumn(4).setPreferredWidth(100);//accion evento
+        tabla_estudiantes.getColumnModel().getColumn(0).setPreferredWidth(70);//documento
+        tabla_estudiantes.getColumnModel().getColumn(1).setPreferredWidth(130);//documento
+        tabla_estudiantes.getColumnModel().getColumn(2).setPreferredWidth(380);//nombre
+        tabla_estudiantes.getColumnModel().getColumn(3).setPreferredWidth(350);//direccion
+        tabla_estudiantes.getColumnModel().getColumn(4).setPreferredWidth(100);//accion perfil
+        tabla_estudiantes.getColumnModel().getColumn(5).setPreferredWidth(100);//accion evento
 
         //personaliza el encabezado
         JTableHeader jtableHeader = tabla_estudiantes.getTableHeader();
@@ -682,20 +1935,161 @@ public class Principal extends javax.swing.JFrame {
         jscroll_estudiantes.setViewportView(tabla_estudiantes);
     }
 
-    public void mouseClicked(MouseEvent e) {
-        //capturo fila o columna dependiendo de mi necesidad
-        int fila = tabla_estudiantes.rowAtPoint(e.getPoint());
-        int columna = tabla_estudiantes.columnAtPoint(e.getPoint());
+    private void construir_tabla_edificios(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        tabla_edificios.setModel(modelo);
 
-        /*uso la columna para valiar si corresponde a la columna de perfil garantizando
-		 * que solo se produzca algo si selecciono una fila de esa columna
-         */
-        if (columna == tabla_estudiantes.getColumnCount() - 2) {
-            //sabiendo que corresponde a la columna de perfil, envio la posicion de la fila seleccionada
-        } else if (columna == tabla_estudiantes.getColumnCount() - 1) {//se valida que sea la columna del otro evento
-            //mensaje si eligio eliminar estudiante
-        }
+        filasTabla = tabla_edificios.getRowCount();
+        columnasTabla = tabla_edificios.getColumnCount();
 
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        tabla_edificios.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("texto"));
+        tabla_edificios.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("icono"));
+
+        tabla_edificios.getTableHeader().setReorderingAllowed(false);
+        tabla_edificios.setRowHeight(30);//tamaño de las celdas
+        tabla_edificios.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        tabla_edificios.getColumnModel().getColumn(0).setPreferredWidth(70);//documento
+        tabla_edificios.getColumnModel().getColumn(1).setPreferredWidth(130);//documento
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = tabla_edificios.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        tabla_edificios.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_edificios.setViewportView(tabla_edificios);
+    }
+
+    private void construir_tabla_cursos(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        tabla_cursos.setModel(modelo);
+
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        tabla_cursos.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_cursos.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("texto"));
+        tabla_cursos.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_cursos.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_cursos.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("icono"));
+        tabla_cursos.getColumnModel().getColumn(5).setCellRenderer(new GestionCeldas("icono"));
+
+        tabla_cursos.getTableHeader().setReorderingAllowed(false);
+        tabla_cursos.setRowHeight(30);//tamaño de las celdas
+        tabla_cursos.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        tabla_cursos.getColumnModel().getColumn(0).setPreferredWidth(50);//documento
+        tabla_cursos.getColumnModel().getColumn(1).setPreferredWidth(200);//documento
+        tabla_cursos.getColumnModel().getColumn(2).setPreferredWidth(50);//documento
+        tabla_cursos.getColumnModel().getColumn(3).setPreferredWidth(50);//documento
+        tabla_cursos.getColumnModel().getColumn(4).setPreferredWidth(80);//documento
+        tabla_cursos.getColumnModel().getColumn(5).setPreferredWidth(80);//documento
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = tabla_cursos.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        tabla_cursos.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_cursos.setViewportView(tabla_cursos);
+    }
+
+    private void construir_tabla_usuarios(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        tabla_usuarios.setModel(modelo);
+
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        tabla_usuarios.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_usuarios.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("texto"));
+        tabla_usuarios.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("texto"));
+        tabla_usuarios.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("texto"));
+        tabla_usuarios.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("icono"));
+        tabla_usuarios.getColumnModel().getColumn(5).setCellRenderer(new GestionCeldas("icono"));
+
+        tabla_usuarios.getTableHeader().setReorderingAllowed(false);
+        tabla_usuarios.setRowHeight(30);//tamaño de las celdas
+        tabla_usuarios.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        tabla_usuarios.getColumnModel().getColumn(0).setPreferredWidth(100);//id
+        tabla_usuarios.getColumnModel().getColumn(1).setPreferredWidth(250);//username
+        tabla_usuarios.getColumnModel().getColumn(2).setPreferredWidth(200);//password
+        tabla_usuarios.getColumnModel().getColumn(3).setPreferredWidth(150);//tipo
+        tabla_usuarios.getColumnModel().getColumn(4).setPreferredWidth(60);//accion modificar
+        tabla_usuarios.getColumnModel().getColumn(5).setPreferredWidth(60);//accion eliminar
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = tabla_usuarios.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        tabla_usuarios.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_usuarios.setViewportView(tabla_usuarios);
+    }
+
+    private void construir_tabla_catedraticos(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        tabla_catedraticos.setModel(modelo);
+
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        tabla_catedraticos.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("numerico"));
+        tabla_catedraticos.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("texto"));
+        tabla_catedraticos.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("texto"));
+        tabla_catedraticos.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("icono"));
+        tabla_catedraticos.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("icono"));
+
+        tabla_catedraticos.getTableHeader().setReorderingAllowed(false);
+        tabla_catedraticos.setRowHeight(30);//tamaño de las celdas
+        tabla_catedraticos.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        tabla_catedraticos.getColumnModel().getColumn(0).setPreferredWidth(100);//id
+        tabla_catedraticos.getColumnModel().getColumn(1).setPreferredWidth(250);//username
+        tabla_catedraticos.getColumnModel().getColumn(2).setPreferredWidth(200);//password
+        tabla_catedraticos.getColumnModel().getColumn(3).setPreferredWidth(60);//accion modificar
+        tabla_catedraticos.getColumnModel().getColumn(4).setPreferredWidth(60);//accion eliminar
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = tabla_catedraticos.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        tabla_catedraticos.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_catedraticos.setViewportView(tabla_catedraticos);
+    }
+
+    private void construir_tabla_salones(String[] titulos, Object[][] data) {
+        modelo = new Modelo(titulos, data);
+        //se asigna el modelo a la tabla
+        JTable agilizar = tabla_salones;
+        agilizar.setModel(modelo);
+
+        //se asigna el tipo de dato que tendrán las celdas de cada columna definida respectivamente para validar su personalización
+        agilizar.getColumnModel().getColumn(0).setCellRenderer(new GestionCeldas("texto"));
+        agilizar.getColumnModel().getColumn(1).setCellRenderer(new GestionCeldas("numerico"));
+        agilizar.getColumnModel().getColumn(2).setCellRenderer(new GestionCeldas("numerico"));
+        agilizar.getColumnModel().getColumn(3).setCellRenderer(new GestionCeldas("icono"));
+        agilizar.getColumnModel().getColumn(4).setCellRenderer(new GestionCeldas("icono"));
+
+        agilizar.getTableHeader().setReorderingAllowed(false);
+        agilizar.setRowHeight(30);//tamaño de las celdas
+        agilizar.setGridColor(new java.awt.Color(0, 0, 0));
+        //Se define el tamaño de largo para cada columna y su contenido
+        agilizar.getColumnModel().getColumn(0).setPreferredWidth(50);//id
+        agilizar.getColumnModel().getColumn(1).setPreferredWidth(100);//username
+        agilizar.getColumnModel().getColumn(2).setPreferredWidth(100);//password
+        agilizar.getColumnModel().getColumn(3).setPreferredWidth(60);//accion modificar
+        agilizar.getColumnModel().getColumn(4).setPreferredWidth(60);//accion eliminar
+
+        //personaliza el encabezado
+        JTableHeader jtableHeader = agilizar.getTableHeader();
+        jtableHeader.setDefaultRenderer(new GestionEncabezadoTabla());
+        agilizar.setTableHeader(jtableHeader);
+
+        //se asigna la tabla al scrollPane
+        jscroll_salones.setViewportView(agilizar);
     }
 
     public void escribir_doc(String nombre, JLabel referencia, String texto) {
@@ -751,27 +2145,17 @@ public class Principal extends javax.swing.JFrame {
             ImageIcon n = new ImageIcon(decodedPath + "/src/Graphviz/" + nombre + ".jpg");
             if (n.getIconHeight() > n.getIconWidth()) {
                 ImageIcon imageIcon = new ImageIcon(new ImageIcon(decodedPath + "/src/Graphviz/" + nombre + ".jpg").getImage().getScaledInstance(-1, referencia.getHeight(), Image.SCALE_SMOOTH));
-            
-            referencia.setIcon(imageIcon);
+
+                referencia.setIcon(imageIcon);
             } else {
-                ImageIcon imageIcon = new ImageIcon(new ImageIcon(decodedPath + "/src/Graphviz/"+nombre+".jpg").getImage().getScaledInstance(referencia.getWidth(), -1, Image.SCALE_SMOOTH));
-            
-            referencia.setIcon(imageIcon);
+                ImageIcon imageIcon = new ImageIcon(new ImageIcon(decodedPath + "/src/Graphviz/" + nombre + ".jpg").getImage().getScaledInstance(referencia.getWidth(), -1, Image.SCALE_SMOOTH));
+
+                referencia.setIcon(imageIcon);
             }
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-    }
-
-    /**
-     * Este metodo simularia el proceso o la acción que se quiere realizar si se
-     * presiona alguno de los botones o iconos de la tabla
-     *
-     * @param fila
-     */
-    private void validarSeleccionMouse(int fila) {
-        //mensaje si eligio modificar estudiante
     }
 
     /**
@@ -810,25 +2194,64 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_cancel_catedratico;
+    private javax.swing.JButton btn_cancel_curso;
+    private javax.swing.JButton btn_cancel_estudiante;
+    private javax.swing.JButton btn_cancel_salon;
+    private javax.swing.JButton btn_cancel_usuario;
     private javax.swing.JButton btn_cargar;
+    private javax.swing.JButton btn_catedratico;
+    private javax.swing.JButton btn_curso;
+    private javax.swing.JButton btn_edificio;
+    private javax.swing.JButton btn_estudiante;
+    private javax.swing.JButton btn_salon;
+    private javax.swing.JButton btn_usuario;
     private javax.swing.JPanel cambiante;
+    private javax.swing.JComboBox<String> combo_edificios;
     private javax.swing.JTabbedPane crea_est;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -839,15 +2262,42 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JScrollPane jscroll_catedraticos;
+    private javax.swing.JScrollPane jscroll_cursos;
+    private javax.swing.JScrollPane jscroll_edificios;
     private javax.swing.JScrollPane jscroll_estudiantes;
+    private javax.swing.JScrollPane jscroll_salones;
+    private javax.swing.JScrollPane jscroll_usuarios;
+    private javax.swing.JLabel label_catedraticos;
+    private javax.swing.JLabel label_cursos;
+    private javax.swing.JLabel label_edificios;
     private javax.swing.JLabel label_estudiantes;
     private javax.swing.JLabel label_horario;
+    private javax.swing.JLabel label_usuarios;
     private javax.swing.JPanel panel_img;
     private javax.swing.JPanel panel_text;
+    private javax.swing.JTable tabla_catedraticos;
+    private javax.swing.JTable tabla_cursos;
+    private javax.swing.JTable tabla_edificios;
     private javax.swing.JTable tabla_estudiantes;
+    private javax.swing.JTable tabla_salones;
+    private javax.swing.JTable tabla_usuarios;
+    private javax.swing.JTextField text_capacidad;
+    private javax.swing.JTextField text_carnet;
+    private javax.swing.JTextField text_codigo;
+    private javax.swing.JTextField text_creditos;
+    private javax.swing.JTextField text_direccion;
+    private javax.swing.JTextField text_direccionc;
+    private javax.swing.JTextField text_edificio;
+    private javax.swing.JTextField text_id;
+    private javax.swing.JTextField text_idc;
+    private javax.swing.JTextField text_nombre;
+    private javax.swing.JTextField text_nombre_curso;
+    private javax.swing.JTextField text_nombrec;
+    private javax.swing.JTextField text_numero;
+    private javax.swing.JTextField text_password;
+    private javax.swing.JTextField text_semestre;
+    private javax.swing.JTextField text_user;
     private javax.swing.JTextField txt_archivo;
     // End of variables declaration//GEN-END:variables
 }

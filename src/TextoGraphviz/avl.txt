@@ -1,0 +1,15 @@
+digraph G{
+node [shape = record,height=.1];node1[label = "<f0> |<f1> 1\nProf1\nCiudad|<f2> "];
+"node1":f2 -> "node3":f1;
+node3[label = "<f0> |<f1> 3\nProf3\nCiudad|<f2> "];
+node10[label = "<f0> |<f1> 10\nProf10\nCiudad|<f2> "];
+"node10":f0 -> "node1":f1;
+"node10":f2 -> "node100":f1;
+node23[label = "<f0> |<f1> 23\nProf23\nCiudad|<f2> "];
+node100[label = "<f0> |<f1> 100\nProf100\nCiudad|<f2> "];
+"node100":f0 -> "node23":f1;
+"node100":f2 -> "node120":f1;
+node120[label = "<f0> |<f1> 120\nProf120\nCiudad|<f2> "];
+"node120":f2 -> "node130":f1;
+node130[label = "<f0> |<f1> 130\nProf130\nCiudad|<f2> "];
+}

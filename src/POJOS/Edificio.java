@@ -52,5 +52,7 @@ public class Edificio {
         this.salones = salones;
     }
     
-    
+    public String toString(){
+        return nombre;
+    }
 }

@@ -10,6 +10,7 @@ package POJOS;
  * @author willi
  */
 public class Estudiante {
+    private int llave;
     private int carnet;
     private String nombre;
     private String direccion;
@@ -50,8 +51,17 @@ public class Estudiante {
 
     @Override
     public String toString() {
-        return "carné: "+carnet+"\\n nombre: "+nombre+"\\n direccion: "+direccion; //To change body of generated methods, choose Tools | Templates.
+        return "carné: "+carnet+" nombre: "+nombre+" direccion: "+direccion; //To change body of generated methods, choose Tools | Templates.
     }
+
+    public int getLlave() {
+        return llave;
+    }
+
+    public void setLlave(int llave) {
+        this.llave = llave;
+    }
+    
     
     
 }

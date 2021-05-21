@@ -36,11 +36,11 @@ public class Catedratico {
         this.nombre = nombre;
     }
 
-    public String getDirección() {
+    public String getDireccion() {
         return direccion;
     }
 
-    public void setDirección(String direccion) {
+    public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
     

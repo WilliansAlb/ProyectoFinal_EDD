@@ -5,6 +5,9 @@
  */
 package Estructuras;
 
+import POJOS.Catedratico;
+import java.util.ArrayList;
+
 /**
  *
  * @author willi
@@ -12,7 +15,7 @@ package Estructuras;
  */
 public class AVL<T> {
 
-    private NodoAVL<T> raiz;
+    public NodoAVL<T> raiz;
     private int no_nodos;
     static final String INICIO_GRAFICO = "digraph G{\n"
             + "node [shape = record,height=.1];";
@@ -24,6 +27,7 @@ public class AVL<T> {
 
     /**
      * Método que retorna un elemento buscado
+     *
      * @param id el identificador del elemento buscado
      * @param r el nodo donde se encuentra el método
      * @return el elemento
@@ -41,7 +45,9 @@ public class AVL<T> {
     }
 
     /**
-     * Método que retorna el factor de balance que tiene el nodo para ver si se tiene que balancear o no
+     * Método que retorna el factor de balance que tiene el nodo para ver si se
+     * tiene que balancear o no
+     *
      * @param nodo el nodo al cual se le quiere sacar el factor de balance
      * @return el factor de balance
      */
@@ -54,7 +60,9 @@ public class AVL<T> {
     }
 
     /**
-     * Método que balancea el subarbol que se le envia, y retorna el subarbol ya balanceado
+     * Método que balancea el subarbol que se le envia, y retorna el subarbol ya
+     * balanceado
+     *
      * @param nodo el nodo raiz del subarbol
      * @return el arbol ya balanceado
      */
@@ -68,7 +76,9 @@ public class AVL<T> {
     }
 
     /**
-     * Método que realiza una rotacion a la derecha, y retorna el subarbol balanceado
+     * Método que realiza una rotacion a la derecha, y retorna el subarbol
+     * balanceado
+     *
      * @param nodo el nodo raiz del subarbol enviado
      * @return subarbol balanceado
      */
@@ -82,7 +92,9 @@ public class AVL<T> {
     }
 
     /**
-     * Método que realiza una rotacion doble a la izquierda, y retorna el subarbol balanceado
+     * Método que realiza una rotacion doble a la izquierda, y retorna el
+     * subarbol balanceado
+     *
      * @param nodo el nodo raiz del subarbol enviado
      * @return subarbol balanceado
      */
@@ -94,7 +106,9 @@ public class AVL<T> {
     }
 
     /**
-     * Método que realiza una rotacion doble a la derecha, y retorna el subarbol balanceado
+     * Método que realiza una rotacion doble a la derecha, y retorna el subarbol
+     * balanceado
+     *
      * @param nodo el nodo raiz del subarbol enviado
      * @return subarbol balanceado
      */
@@ -106,7 +120,9 @@ public class AVL<T> {
     }
 
     /**
-     * Método que encuentra el nodo más a la derecha y abajo del subarbol enviado
+     * Método que encuentra el nodo más a la derecha y abajo del subarbol
+     * enviado
+     *
      * @param nodo el nodo raiz del subarbol
      * @return nodo más a la derecha y abajo del subarbol enviado
      */
@@ -121,9 +137,12 @@ public class AVL<T> {
     }
 
     /**
-     * Método recursivo, que recorre el arbol hasta encontrar la posición donde el nodo pueda ser ingresado
+     * Método recursivo, que recorre el arbol hasta encontrar la posición donde
+     * el nodo pueda ser ingresado
+     *
      * @param nuevo el nodo a insertar
-     * @param subAr el subarbol generado al buscar la posicion donde el nodo pude ser ingresado
+     * @param subAr el subarbol generado al buscar la posicion donde el nodo
+     * pude ser ingresado
      * @return el arbol con el elemento ingresado
      */
     public NodoAVL<T> insertarAVL(NodoAVL<T> nuevo, NodoAVL<T> subAr) {
@@ -169,6 +188,7 @@ public class AVL<T> {
 
     /**
      * Método para insertar un elemento desde otras clases
+     *
      * @param id el identificador del elemento
      * @param datos los datos del elemento
      */
@@ -183,8 +203,10 @@ public class AVL<T> {
     }
 
     /**
-     * Método recursivo que recorre el arbol InOrden y va generando el string para graficar con graphviz
-     * @param recorrida el nodo actual  
+     * Método recursivo que recorre el arbol InOrden y va generando el string
+     * para graficar con graphviz
+     *
+     * @param recorrida el nodo actual
      * @return todo el string para graficar
      */
     public String recorrido(NodoAVL<T> recorrida) {
@@ -202,7 +224,23 @@ public class AVL<T> {
         }
         return retorno;
     }
-    
+
+    public ArrayList<Catedratico> listado(NodoAVL<T> recorrida) {
+        ArrayList<Catedratico> retorno = new ArrayList<>();
+        if (recorrida != null) {
+            ArrayList<Catedratico> t1 = listado(recorrida.getIzquierda());
+            if (!t1.isEmpty()) {
+                retorno.addAll(t1);
+            }
+            retorno.add((Catedratico) recorrida.getData());
+            ArrayList<Catedratico> t2 = listado(recorrida.getDerecha());
+            if (!t2.isEmpty()) {
+                retorno.addAll(t2);
+            }
+        }
+        return retorno;
+    }
+
     public T obtener(int id) {
         NodoAVL<T> temporal = raiz;
         while (temporal != null) {
@@ -219,6 +257,7 @@ public class AVL<T> {
 
     /**
      * Método para eliminar el elemento con el id que se envia
+     *
      * @param id el id a eliminar
      */
     public void eliminar(int id) {
@@ -226,14 +265,16 @@ public class AVL<T> {
     }
 
     /**
-     * Método recursivo que encuentra el elemento a eliminar, lo elimina, y balance el resultado del arbol
+     * Método recursivo que encuentra el elemento a eliminar, lo elimina, y
+     * balance el resultado del arbol
+     *
      * @param id el identificador del nodo buscado
      * @param nodo el nodo en el que nos encontramos
-     * @return el nodo en el que se encuentra ya modificado según sea las condiciones
+     * @return el nodo en el que se encuentra ya modificado según sea las
+     * condiciones
      */
     public NodoAVL<T> eliminar(int id, NodoAVL<T> nodo) {
         if (nodo == null) {
-            System.out.println("Error");
             return null;
         }
         if (id < nodo.getId()) {
@@ -279,8 +320,8 @@ public class AVL<T> {
                 }
             }
             int control2 = nodo.getId();
-            int control = nodo.getIzquierda()!=null ? nodo.getIzquierda().getId() : -1;
-            if (control2==control){
+            int control = nodo.getIzquierda() != null ? nodo.getIzquierda().getId() : -1;
+            if (control2 == control) {
                 nodo.setIzquierda(null);
             }
         } else {
@@ -297,9 +338,11 @@ public class AVL<T> {
 
     /**
      * Método que crea el documento para realizar el documento de graphviz
+     *
+     * @return el documento para crear en graphviz
      */
-    public void crear_doc() {
-        System.out.println(INICIO_GRAFICO + recorrido(raiz) + "}");
+    public String escribir_doc() {
+        return INICIO_GRAFICO + recorrido(raiz) + "}";
     }
 
     public NodoAVL<T> getRaiz() {

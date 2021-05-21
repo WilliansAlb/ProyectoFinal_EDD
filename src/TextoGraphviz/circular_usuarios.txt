@@ -1,0 +1,23 @@
+digraph G{
+node [shape = box,height=.1];nodeCU1[label = " 1\nColaborador1\n12345\ncolaborador "];
+"nodeCU1" -> "nodeCU2"
+"nodeCU1" -> "nodeCU464198670"
+nodeCU2[label = " 2\nColaborador2\n12345\ncolaborador "];
+"nodeCU2" -> "nodeCU3"
+"nodeCU2" -> "nodeCU1"
+nodeCU3[label = " 3\nColaborador3\n12345\nsuper "];
+"nodeCU3" -> "nodeCU4"
+"nodeCU3" -> "nodeCU2"
+nodeCU4[label = " 4\nJuanito\n12345\nsuper "];
+"nodeCU4" -> "nodeCU201830221"
+"nodeCU4" -> "nodeCU3"
+nodeCU201830221[label = " 201830221\ncristeptesico\n12345\nestudiante "];
+"nodeCU201830221" -> "nodeCU201830222"
+"nodeCU201830221" -> "nodeCU4"
+nodeCU201830222[label = " 201830222\nestudiante1\n12345\nestudiante "];
+"nodeCU201830222" -> "nodeCU464198670"
+"nodeCU201830222" -> "nodeCU201830221"
+nodeCU464198670[label = " 464198670\nwill\n12345\nestudiante "];
+"nodeCU464198670" -> "nodeCU1"
+"nodeCU464198670" -> "nodeCU201830222"
+{rank=same;"nodeCU1"; "nodeCU2"; "nodeCU3"; "nodeCU4"; "nodeCU201830221"; "nodeCU201830222"; "nodeCU464198670"; }}
